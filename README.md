@@ -1,1 +1,1 @@
-# nordic-retail-group-webshop
+# Nordic Retail Group Webshop
