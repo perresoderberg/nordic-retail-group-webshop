@@ -1,0 +1,30 @@
+/* Utloggningsknapp */
+.logoutButton {
+  inline-size: 100%;
+  padding-block: 0.75rem;
+  padding-inline: var(--space-lg);
+
+  color: var(--color-surface);
+  background-color: var(--color-primary);
+
+  font-weight: 600;
+
+  border: none;
+  border-radius: var(--radius-md);
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.logoutButton:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+}
+
+.logoutButton:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.logoutButton:disabled {
+  opacity: 0.6;
+}

@@ -37,13 +37,19 @@ export default function Login() {
                 aria-labelledby="login-heading"
             >
                 <div className={styles.loginHeader}>
-                    <h1 id="login-heading">Logga in</h1>
-                    <p>Logga in med din e-postadress och ditt lösenord.</p>
+                    <h1 id="login-heading">
+                        {isLoggedIn ? "Du är inloggad" : "Logga in"}
+                    </h1>
+
+                    <p>
+                        {isLoggedIn
+                            ? "Du är nu inloggad på ditt konto."
+                            : "Logga in med din e-postadress och ditt lösenord."}
+                    </p>
                 </div>
 
                 {isLoggedIn ? (
                     <div>
-                        <p>Du är inloggad.</p>
                         <LogoutButton />
                     </div>
                 ) : (
