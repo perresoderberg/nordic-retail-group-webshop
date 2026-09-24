@@ -1,0 +1,127 @@
+.addProductSection {
+    margin-block: 2rem;
+    padding: 1.5rem;
+    border: 1px solid #dedede;
+    border-radius: 0.5rem;
+    background-color: #ffffff;
+}
+
+.addProductSection h2 {
+    margin-block: 0 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.productForm {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.formGroup label {
+    font-weight: 600;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+    /* inline-size: 100%;
+    padding-block: 0.65rem;
+    padding-inline: 0.75rem;
+    border: 1px solid #d6d6d6;
+    border-radius: 0.35rem;
+    background-color: #ffffff;
+    font: inherit; */
+    width: 100%;
+    padding-block: 0.45rem;
+    padding-inline: 0.65rem;
+    border: 1px solid #d6d6d6;
+    border-radius: 0.35rem;
+    font: inherit;
+}
+
+/* Användaren kan ändra <textarea> storleken på höjden */
+.formGroup textarea {
+    resize: vertical;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 1rem;
+    margin-block-start: 1rem;
+}
+
+.cancelButton {
+    padding-block: 0.65rem;
+    padding-inline: 1rem;
+    border: 1px solid #d6d6d6;
+    border-radius: 0.5rem;
+    background-color: #ffffff;
+    color: black;
+    font: inherit;
+    cursor: pointer;
+}
+
+.cancelButton {
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.cancelButton:hover {
+    transform: scale(1.04);
+    background-color: #f3f3f3;
+    border-color: #bdbdbd;
+}
+
+.saveButton {
+    padding-block: 0.65rem;
+    padding-inline: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    /* background-color: rgb(103, 214, 103); */
+    background-color: #625cff;
+    color: #ffffff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.saveButton {
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.saveButton:hover {
+    transform: scale(1.04);
+    background-color: #514be8;
+    box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 12%);
+}
+
+/* För användare som navigerar med tangentbord /fokus på tillgänglighet */
+.cancelButton:focus-visible,
+.saveButton:focus-visible {
+    outline: 2px solid #625cff;
+    outline-offset: 2px;
+}
+
+@media (min-width: 48rem) {
+
+    /* .productForm {
+        grid-template-columns: repeat(2, 1fr); */
+    .productForm {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 1rem;
+        row-gap: 0.75rem;
+    }
+}
