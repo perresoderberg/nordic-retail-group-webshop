@@ -3,6 +3,7 @@ import LoginForm from "../components/auth/LoginForm";
 import LogoutButton from "../components/auth/LogoutButton";
 import { supabase } from "../services/supabase";
 import styles from "./login.module.css";
+import ApiUpdateTest from "../components/test/ApiUpdateTest";
 
 
 export default function Login() {
@@ -51,6 +52,7 @@ export default function Login() {
                 {isLoggedIn ? (
                     <div>
                         <LogoutButton />
+                        <ApiUpdateTest />
                     </div>
                 ) : (
                     <LoginForm />
