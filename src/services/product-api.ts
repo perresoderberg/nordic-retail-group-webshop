@@ -1,5 +1,5 @@
 import { API_URL } from "./api";
-import type { ProductsResponse } from "../types/product";
+import type { Product, ProductsResponse } from "../types/product";
 import { LowStock } from "../constants/inventory";
 
 const DEFAULT_LIMIT = 8;
@@ -12,6 +12,17 @@ type ProductFilters = {
   sort?: string;
   order?: "asc" | "desc";
 };
+
+// Hämtar produkter till kundens produktöversikt
+export async function getShopProducts(): Promise<Product[]> {
+  const response = await fetch(`${API_URL}/api/Products`);
+
+  if (!response.ok) {
+    throw new Error("Failed to load products.");
+  }
+
+  return response.json();
+}
 
 // Hämtar produkter från API:t med paginering och valda filter
 export async function getProducts(
