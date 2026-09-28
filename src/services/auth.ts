@@ -1,5 +1,13 @@
 import { supabase } from "./supabase";
 
+export async function isAuthenticated(): Promise<boolean> {
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  return session !== null;
+}
+
 // Loggar in användaren med e-postadress och lösenord
 export async function signIn(email: string, password: string) {
   const { data, error } = await supabase.auth.signInWithPassword({
