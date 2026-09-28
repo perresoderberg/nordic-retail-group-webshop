@@ -31,13 +31,15 @@ export interface Product {
   }[];
   returnPolicy?: string;
   minimumOrderQuantity?: number;
-  meta: {
+  // Metadata finns inte på alla produkter från API:t
+  meta?: {
     createdAt: string;
     updatedAt: string;
     barcode?: string;
     qrCode?: string;
   };
-  images: string[];
+  // Flera produktbilder är valfria
+  images?: string[];
   thumbnail: string;
 }
 
