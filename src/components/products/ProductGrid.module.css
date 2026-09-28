@@ -1,0 +1,20 @@
+/* Grid för produktkorten */
+.productGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+/* Tablet */
+@media (min-width: 48rem) {
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop */
+@media (min-width: 64rem) {
+  .productGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
