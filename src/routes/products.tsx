@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import ProductGrid from "../components/products/ProductGrid";
-import { getShopProducts } from "../services/product-api";
-import type { Product } from "../types/product";
 
-function Products() {
+import ProductGrid from "../components/products/ProductGrid";
+import { getShopProducts } from "../products/product-api";
+import type { Product } from "../products/types";
+
+export function Products() {
   // Sparar produkterna som hämtas från API:t
   const [products, setProducts] = useState<Product[]>([]);
 
@@ -19,12 +20,10 @@ function Products() {
   }, []);
 
   return (
-    <main id="main-content">
+    <div id="main-content">
       <h1>Products</h1>
 
       <ProductGrid products={products} />
-    </main>
+    </div>
   );
 }
-
-export default Products;

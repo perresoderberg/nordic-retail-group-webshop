@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { supabase } from "../services/supabase";
 import styles from "./login.module.css";
 import LogoutButton from "../auth/LogoutButton";
-import ApiUpdateTest from "../test/ApiUpdateTest";
 import LoginForm from "../auth/LoginForm";
 
 export default function Login() {
@@ -49,7 +48,6 @@ export default function Login() {
         {isLoggedIn ? (
           <div>
             <LogoutButton />
-            <ApiUpdateTest />
           </div>
         ) : (
           <LoginForm />
