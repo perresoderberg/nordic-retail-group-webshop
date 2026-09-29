@@ -1,5 +1,5 @@
-import { API_URL } from "./api";
-import type { Category } from "../types/category";
+import { API_URL } from "../services/api";
+import type { Category } from "../types/types";
 
 // Funktion för att hämta kategorier
 export async function getCategories(): Promise<Category[]> {

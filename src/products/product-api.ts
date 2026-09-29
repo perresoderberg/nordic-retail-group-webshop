@@ -1,6 +1,6 @@
-import { API_URL } from "./api";
-import type { Product, ProductsResponse } from "../types/product";
+import { API_URL } from "../services/api";
 import { LowStock } from "../constants/inventory";
+import type { Product, ProductsResponse } from "./types";
 
 const DEFAULT_LIMIT = 8;
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import AddProductForm from "../AddProductForm";
 import styles from "./InventoryHeader.module.css";
-import type { Category } from "../../../types/category";
+import type { Category } from "../../../types/types";
 
 type Props = {
   categories: Category[];

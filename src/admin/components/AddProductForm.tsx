@@ -1,5 +1,5 @@
+import type { Category } from "../../types/types";
 import styles from "./AddProductForm.module.css";
-import type { Category } from "../../types/category";
 
 type Props = {
   onCancel: () => void;

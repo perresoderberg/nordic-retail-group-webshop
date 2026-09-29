@@ -1,4 +1,4 @@
-import type { Product } from "../../../types/product";
+import type { Product } from "../../../products/types";
 import ProductRow from "./ProductRow";
 
 type SortOrder = "asc" | "desc";

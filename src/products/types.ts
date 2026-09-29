@@ -1,4 +1,4 @@
-import type { Category } from "./category";
+import type { Category } from "../types/types";
 
 export interface Product {
   id: number;
@@ -31,15 +31,13 @@ export interface Product {
   }[];
   returnPolicy?: string;
   minimumOrderQuantity?: number;
-  // Metadata finns inte på alla produkter från API:t
-  meta?: {
+  meta: {
     createdAt: string;
     updatedAt: string;
     barcode?: string;
     qrCode?: string;
   };
-  // Flera produktbilder är valfria
-  images?: string[];
+  images: string[];
   thumbnail: string;
 }
 

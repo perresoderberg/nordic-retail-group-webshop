@@ -1,5 +1,5 @@
-import type { Product } from "../../../types/product";
 import { LowStock } from "../../../constants/inventory";
+import type { Product } from "../../../products/types";
 
 function InventoryStat(props: {
   label: string;

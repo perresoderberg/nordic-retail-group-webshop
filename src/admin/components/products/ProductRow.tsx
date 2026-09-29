@@ -1,6 +1,6 @@
-import type { Product } from "../../../types/product";
 import DeleteButton from "./DeleteButton";
 import { LowStock } from "../../../constants/inventory";
+import type { Product } from "../../../products/types";
 
 type Props = {
   product: Product;

@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-import logo from "../../assets/icons/logo_black.svg";
-import person from "../../assets/icons/person_black.svg";
-import basket from "../../assets/icons/basket_black.svg";
+import logo from "../assets/icons/logo_black.svg";
+import person from "../assets/icons/person_black.svg";
+import basket from "../assets/icons/basket_black.svg";
 
 export default function Navigation() {
   return (

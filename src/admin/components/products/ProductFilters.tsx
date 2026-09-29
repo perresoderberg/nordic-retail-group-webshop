@@ -2,7 +2,7 @@ import type { FormEvent } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import styles from "./ProductFilters.module.css";
-import type { Category } from "../../../types/category";
+import type { Category } from "../../../types/types";
 
 type ProductFiltersProps = {
   categories?: Category[];

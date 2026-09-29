@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import type { Product } from "../../types/product";
+
 import styles from "./ProductCard.module.css";
+import type { Product } from "../types";
 
 interface ProductCardProps {
   product: Product;
@@ -10,10 +11,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <article className={styles.productCard}>
       {/* Hela produktkortet länkar till produktens detaljsida */}
-      <Link
-        className={styles.productLink}
-        to={`/products/${product.id}`}
-      >
+      <Link className={styles.productLink} to={`/products/${product.id}`}>
         <img
           className={styles.productImage}
           src={product.thumbnail}
@@ -28,9 +26,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
           <h2 className={styles.productTitle}>{product.title}</h2>
 
-          <p className={styles.productPrice}>
-            {product.price.toFixed(2)} kr
-          </p>
+          <p className={styles.productPrice}>{product.price.toFixed(2)} kr</p>
         </div>
       </Link>
     </article>
