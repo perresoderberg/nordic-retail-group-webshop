@@ -1,7 +1,8 @@
-import type { CartItem } from "../types";
+import type { CartItem as CartItemType } from "../types";
+import styles from "./CartItem.module.css";
 
 interface CartItemProps {
-  item: CartItem;
+  item: CartItemType;
   onRemove: (productId: number) => void;
   onQuantityChange: (productId: number, quantity: number) => void;
 }
@@ -12,35 +13,52 @@ export default function CartItem({
   onQuantityChange,
 }: CartItemProps) {
   return (
-    <article className="flex items-center gap-4 border-b py-4">
+    <article className={styles.cartItem}>
       {item.thumbnail && (
-        <img src={item.thumbnail} alt="" className="h-20 w-20 object-contain" />
+        <img src={item.thumbnail} alt="" className={styles.productImage} />
       )}
 
-      <div className="flex-1">
-        <h2 className="font-semibold">{item.title}</h2>
+      <div className={styles.productInfo}>
+        <h2 className={styles.productTitle}>{item.title}</h2>
 
-        <p>{item.price} kr</p>
+        <p className={styles.productPrice}>{item.price.toFixed(2)} kr</p>
       </div>
 
-      <input
-        type="number"
-        min="1"
-        value={item.quantity}
-        onChange={(event) =>
-          onQuantityChange(item.productId, Number(event.target.value))
-        }
-        className="w-16 rounded border px-2 py-1"
-        aria-label={`Quantity for ${item.title}`}
-      />
+      <div className={styles.quantityContainer}>
+        <button
+          type="button"
+          onClick={() => onQuantityChange(item.productId, item.quantity - 1)}
+          disabled={item.quantity <= 1}
+          className={styles.quantityButton}
+          aria-label={`Decrease quantity of ${item.title}`}
+        >
+          −
+        </button>
+
+        <span className={styles.quantity}>{item.quantity}</span>
+
+        <button
+          type="button"
+          onClick={() => onQuantityChange(item.productId, item.quantity + 1)}
+          className={styles.quantityButton}
+          aria-label={`Increase quantity of ${item.title}`}
+        >
+          +
+        </button>
+      </div>
 
       <button
         type="button"
         onClick={() => onRemove(item.productId)}
-        className="text-sm text-red-600"
+        className={styles.removeButton}
+        aria-label={`Remove ${item.title} from cart`}
       >
-        Remove
+        ×
       </button>
+
+      <p className={styles.itemTotal}>
+        {(item.price * item.quantity).toFixed(2)} kr
+      </p>
     </article>
   );
 }

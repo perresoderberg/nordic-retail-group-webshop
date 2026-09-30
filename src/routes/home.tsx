@@ -1,9 +1,13 @@
+import styles from "./home.module.css";
+
 export default function Home() {
   return (
-    <div className="p-10 text-center">
-      <h1 className="text-4xl font-bold text-blue-600">Nordic Retail Group</h1>
+    <div className={styles.wrapper}>
+      <section>
+        <h1>Nordic Retail Group</h1>
 
-      <p className="mt-4 text-gray-600">Hello and welcome.</p>
+        <h2>Hello and welcome.</h2>
+      </section>
     </div>
   );
 }

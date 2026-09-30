@@ -1,5 +1,3 @@
-@import "tailwindcss";
-
 :root {
   /* Typsnitt */
   --font-primary: "Inter", Arial, sans-serif;
@@ -18,6 +16,12 @@
   --color-border: #dedbd5;
   --color-error: #b42318;
   --color-success: #287a4b;
+
+  --color-header: #1f4d3e;
+  --color-header-highlighted: #3b9174;
+  --color-header-text: #c9ece1;
+  --color-header-text-hover: #f2f3f3;
+  --color-buy-badge: #1f4d3e;
 
   /* Spacing */
   --space-xs: 0.25rem;

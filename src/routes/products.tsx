@@ -3,8 +3,11 @@ import { useEffect, useState } from "react";
 import ProductGrid from "../products/components/ProductGrid";
 import { getShopProducts } from "../products/product-api";
 import type { Product } from "../products/types";
+import { useCart } from "../cart/useCart";
 
 export function Products() {
+  const { addItem } = useCart();
+
   // Sparar produkterna som hämtas från API:t
   const [products, setProducts] = useState<Product[]>([]);
   // Håller reda på om produkterna laddas
@@ -38,7 +41,9 @@ export function Products() {
       {isLoading && <p role="status">Produkter laddas...</p>}
       {error && <p role="alert">{error}</p>}
       {/* Visar produkterna när laddningen är klar och inget fel finns */}
-      {!isLoading && !error && <ProductGrid products={products} />}
+      {!isLoading && !error && (
+        <ProductGrid products={products} onAddToCart={addItem} />
+      )}
     </div>
   );
 }

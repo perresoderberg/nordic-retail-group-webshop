@@ -1,0 +1,63 @@
+.topbarContainer {
+  min-height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 2rem;
+}
+
+.navigationLogo {
+  width: auto;
+  height: 2.5rem;
+}
+
+.navigationLinks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navigationLink:hover {
+  color: var(--color-header-text-hover);
+}
+
+.navigationActions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.cartBadgeContainer {
+  position: relative;
+  padding: 1rem;
+}
+
+.navigationIcon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.cartItemsOnBadge {
+  position: absolute;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+
+  top: 0px;
+  right: 0px;
+  width: 2rem;
+  height: 2rem;
+  background-color: red;
+  border-radius: 100%;
+}
+.cartButton {
+  padding: 0;
+
+  border: 0;
+  background: transparent;
+
+  cursor: pointer;
+}

@@ -1,21 +1,16 @@
-interface CartSummaryProps {
-  itemCount: number;
-  total: number;
-}
+import styles from "./CartSummary.module.css";
 
-export default function CartSummary({ itemCount, total }: CartSummaryProps) {
+export default function CartSummary({ total }: { total: number }) {
   return (
-    <section className="rounded bg-gray-100 p-6">
-      <h2 className="mb-4 text-xl font-semibold">Order summary</h2>
-
-      <div className="flex justify-between">
-        <span>Items</span>
-        <span>{itemCount}</span>
+    <section className={styles.summary}>
+      <div className={styles.shipping}>
+        <span>Frakt:</span>
+        <span>Fri frakt</span>
       </div>
 
-      <div className="mt-4 flex justify-between text-lg font-bold">
-        <span>Total</span>
-        <span>{total.toFixed(2)} kr</span>
+      <div className={styles.total}>
+        <span>Totalt:</span>
+        <span>{total.toFixed(0)} SEK</span>
       </div>
     </section>
   );
