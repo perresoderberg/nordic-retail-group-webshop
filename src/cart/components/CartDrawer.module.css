@@ -1,0 +1,92 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgb(0 0 0 / 40%);
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 101;
+
+  color: black;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 38rem;
+  height: 100vh;
+
+  background: white;
+  box-shadow: -0.25rem 0 1rem rgb(0 0 0 / 20%);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 4.25rem;
+  padding: 1rem;
+
+  border-bottom: 1px solid #ddd;
+
+  h2 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    span {
+      font-weight: 400;
+    }
+  }
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 2rem;
+  height: 2rem;
+
+  background: transparent;
+  color: black;
+  font-size: 3rem;
+
+  cursor: pointer;
+}
+
+.content {
+  flex: 1;
+  padding: 0 1rem;
+}
+
+.footer {
+  padding: 1rem;
+
+  border-top: 1px solid #ddd;
+  background: white;
+
+  .checkoutButton {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem;
+
+    border: 1px solid #111;
+    border-radius: 0.5rem;
+
+    background: var(--color-header);
+
+    font-weight: bold;
+    font-size: 1.5rem;
+
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+
+  .checkoutButton:hover {
+    background: var(--color-header-highlighted);
+  }
+}

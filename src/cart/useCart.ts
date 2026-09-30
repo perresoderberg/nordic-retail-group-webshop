@@ -1,79 +1,20 @@
-import { useEffect, useState } from "react";
-import {
-  addToCart,
-  clearCart,
-  getCart,
-  removeFromCart,
-  updateCartQuantity,
-} from "./cart-service";
-import type { CartItem } from "./types";
+import { useContext } from "react";
+import { CartContext } from "./CartContext";
+
+/* Provides an easy way for components to access CartContext */
+/*
+  Instead of writing
+    const context = useContext(CartContext);
+  You can write
+    const { itemCount } = useCart();
+*/
 
 export function useCart() {
-  const [items, setItems] = useState<CartItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
+  const context = useContext(CartContext);
 
-  useEffect(() => {
-    async function loadCart() {
-      try {
-        setError(null);
-
-        const cart = await getCart();
-
-        setItems(cart.items);
-      } catch (error) {
-        const cartError =
-          error instanceof Error ? error : new Error("Failed to load cart.");
-
-        setError(cartError);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    loadCart();
-  }, []);
-
-  async function addItem(item: Omit<CartItem, "quantity">) {
-    const cart = await addToCart(item);
-
-    setItems(cart.items);
+  if (!context) {
+    throw new Error("useCart must be used inside CartProvider");
   }
 
-  async function removeItem(productId: number) {
-    const cart = await removeFromCart(productId);
-
-    setItems(cart.items);
-  }
-
-  async function setQuantity(productId: number, quantity: number) {
-    const cart = await updateCartQuantity(productId, quantity);
-
-    setItems(cart.items);
-  }
-
-  async function emptyCart() {
-    await clearCart();
-
-    setItems([]);
-  }
-
-  const itemCount = items.reduce((total, item) => total + item.quantity, 0);
-
-  const total = items.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0,
-  );
-
-  return {
-    items,
-    itemCount,
-    total,
-    isLoading,
-    error,
-    addItem,
-    removeItem,
-    setQuantity,
-    clearCart: emptyCart,
-  };
+  return context;
 }

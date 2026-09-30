@@ -1,9 +1,3 @@
-import { isAuthenticated } from "../services/auth";
-import {
-  getCart as getApiCart,
-  saveCart as saveApiCart,
-  deleteCart as deleteApiCart,
-} from "./cart-api";
 import {
   clearStoredCart,
   getStoredCart,
@@ -11,21 +5,24 @@ import {
 } from "./cart-storage";
 import type { Cart, CartItem } from "./types";
 
-export async function getCart(): Promise<Cart> {
-  if (await isAuthenticated()) {
-    return getApiCart();
-  }
+/* This is your cart business logic. */
 
+export function getCart(): Cart {
   return getStoredCart();
 }
 
-export async function addToCart(
-  item: Omit<CartItem, "quantity">,
-): Promise<Cart> {
-  const cart = await getCart();
+export function addToCart(item: Omit<CartItem, "quantity">): Cart {
+  const cart = getCart();
+
+  console.log("cart-service.ts -> addToCart - get ALL cart-items=", cart.items);
 
   const existingItem = cart.items.find(
     (cartItem) => cartItem.productId === item.productId,
+  );
+
+  console.log(
+    "  cart-service.ts -> Find item if it already exists in cart:",
+    existingItem,
   );
 
   const updatedCart: Cart = existingItem
@@ -49,32 +46,40 @@ export async function addToCart(
         ],
       };
 
-  await saveCart(updatedCart);
+  console.log(
+    "  cart-service.ts -> Update cart. the quantity should increase OR a new item has been added. updatedCart:",
+    updatedCart,
+  );
+
+  saveStoredCart(updatedCart);
 
   return updatedCart;
 }
 
-export async function removeFromCart(productId: number): Promise<Cart> {
-  const cart = await getCart();
+export function removeFromCart(productId: number): Cart {
+  const cart = getCart();
 
   const updatedCart: Cart = {
     items: cart.items.filter((item) => item.productId !== productId),
   };
 
-  await saveCart(updatedCart);
+  console.log(
+    "  cart-service.ts -> removeFromCart - want to remove id:",
+    productId,
+    ", The updated cart:",
+    updatedCart,
+  );
+  saveStoredCart(updatedCart);
 
   return updatedCart;
 }
 
-export async function updateCartQuantity(
-  productId: number,
-  quantity: number,
-): Promise<Cart> {
+export function updateCartQuantity(productId: number, quantity: number): Cart {
   if (quantity <= 0) {
     return removeFromCart(productId);
   }
 
-  const cart = await getCart();
+  const cart = getCart();
 
   const updatedCart: Cart = {
     items: cart.items.map((item) =>
@@ -87,25 +92,11 @@ export async function updateCartQuantity(
     ),
   };
 
-  await saveCart(updatedCart);
+  saveStoredCart(updatedCart);
 
   return updatedCart;
 }
 
-export async function clearCart(): Promise<void> {
-  if (await isAuthenticated()) {
-    await deleteApiCart();
-    return;
-  }
-
+export function clearCart(): void {
   clearStoredCart();
-}
-
-async function saveCart(cart: Cart): Promise<void> {
-  if (await isAuthenticated()) {
-    await saveApiCart(cart);
-    return;
-  }
-
-  saveStoredCart(cart);
 }

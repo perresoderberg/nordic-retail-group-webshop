@@ -3,12 +3,7 @@ import CartSummary from "../cart/components/CartSummary";
 import { useCart } from "../cart/useCart";
 
 export default function Basket() {
-  const { items, itemCount, total, isLoading, removeItem, setQuantity } =
-    useCart();
-
-  if (isLoading) {
-    return <p>Loading cart...</p>;
-  }
+  const { items, total, removeItem, setQuantity } = useCart();
 
   return (
     <section className="mx-auto w-[90%] max-w-7xl py-10">
@@ -21,7 +16,7 @@ export default function Basket() {
           onQuantityChange={setQuantity}
         />
 
-        <CartSummary itemCount={itemCount} total={total} />
+        <CartSummary total={total} />
       </div>
     </section>
   );

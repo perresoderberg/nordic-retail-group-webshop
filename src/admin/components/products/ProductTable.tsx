@@ -1,8 +1,6 @@
 import type { Product } from "../../../products/types";
 import ProductRow from "./ProductRow";
 
-type SortOrder = "asc" | "desc";
-
 type ProductTableProps = {
   products: Product[];
   sort: string;
