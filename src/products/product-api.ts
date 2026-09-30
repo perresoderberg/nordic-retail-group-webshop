@@ -24,6 +24,17 @@ export async function getShopProducts(): Promise<Product[]> {
   return response.json();
 }
 
+// Hämtar en produkt utifrån produktens id
+export async function getProductById(id: number): Promise<Product> {
+  const response = await fetch(`${API_URL}/api/Products/${id}`);
+
+  if (!response.ok) {
+    throw new Error("Failed to load product.");
+  }
+
+  return response.json();
+}
+
 // Hämtar produkter från API:t med paginering och valda filter
 export async function getProducts(
   page: number = 1,
