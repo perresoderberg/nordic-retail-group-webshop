@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import styles from "./ProductDetails.module.css";
 import type { Product } from "../types";
 
@@ -6,8 +8,15 @@ interface ProductDetailsProps {
 }
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
-  return (
+return (
+  <div className={styles.productDetailsPage}>
+    {/* Navigerar tillbaka till produktöversikten */}
+    <Link className={styles.backLink} to="/products">
+      ← Tillbaka till produkter
+    </Link>
+
     <article className={styles.productDetails}>
+
       {/* Visar produktens huvudbild */}
       <img
         className={styles.productImage}
@@ -42,5 +51,6 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         </button>
       </div>
     </article>
+    </div>
   );
 }
