@@ -1,3 +1,16 @@
+.controls {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+.controls > :first-child {
+  justify-self: start;
+}
+
+.controls > :nth-child(2) {
+  justify-self: center;
+}
+
 /* Grid för produktkorten */
 .productGrid {
   display: grid;
