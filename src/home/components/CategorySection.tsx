@@ -25,7 +25,7 @@ export default function CategorySection({
           <Link
             className={styles.categoryCard}
             key={category.id}
-            to={`/products?category=${category.slug}`}
+            to={`/products?categoryId=${category.id}`}
           >
             <img
               className={styles.categoryImage}

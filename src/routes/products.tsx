@@ -11,6 +11,9 @@ export function Products() {
   const page = Number(searchParams.get("page")) || 1;
   const pageSize = Number(searchParams.get("pageSize")) || 10;
 
+  // Hämtar kategori-id från URL:en
+  const categoryId = searchParams.get("categoryId");
+
   // Sparar produkterna som hämtas från API:t
   const [products, setProducts] = useState<ProductsResponse>();
   // Håller reda på om produkterna laddas
@@ -22,7 +25,10 @@ export function Products() {
     // Hämtar produkterna när sidan laddas
     async function loadProducts() {
       try {
-        const data = await getProducts(page, pageSize);
+        // Hämtar produkter med vald kategori från URL:en
+        const data = await getProducts(page, pageSize, {
+          categoryId: categoryId ? Number(categoryId) : undefined,
+        });
 
         // Sparar produkterna i state
         setProducts(data);
@@ -36,7 +42,7 @@ export function Products() {
     }
 
     loadProducts();
-  }, [page, pageSize]);
+  }, [page, pageSize, categoryId]);
 
   return (
     <div id="main-content" className={styles.productsPage}>
