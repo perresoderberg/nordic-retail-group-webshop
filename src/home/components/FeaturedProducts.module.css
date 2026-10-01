@@ -1,0 +1,33 @@
+/* Sektion för utvalda produkter */
+.featuredProducts {
+  padding-block: var(--space-2xl);
+  padding-inline: var(--space-lg);
+}
+
+/* Rubrik */
+.title {
+  margin-block: 0 var(--space-xl);
+  color: var(--color-text);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+}
+
+/* Produktgrid */
+.productGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+}
+
+/* Tablet */
+@media (min-width: 48rem) {
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop */
+@media (min-width: 64rem) {
+  .productGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
