@@ -42,9 +42,18 @@ export interface Product {
 }
 
 export interface ProductsResponse {
-  products: Product[];
-  total: number;
-  limit: number;
+  items: Product[];
   page: number;
-  pages: number;
+  pageSize: number;
+  totalCount: number;
+  totalPages: number;
 }
+
+export type ProductFilters = {
+  search?: string;
+  categoryId?: number;
+  minPrice?: number;
+  maxPrice?: number;
+  sortBy?: string;
+  ascending?: boolean;
+};
