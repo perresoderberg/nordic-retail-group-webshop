@@ -1,11 +1,12 @@
-import { API_URL } from "../services/api";
+import { API_URL, apiFetch } from "../services/api";
 import { LowStock } from "../constants/inventory";
 import type { Product, ProductsResponse } from "./types";
 
-const DEFAULT_LIMIT = 8;
+const DEFAULT_PAGE = 1;
+const DEFAULT_PAGE_SIZE = 8;
 
 // Beskriver vilka filter som kan skickas till API-anropet
-type ProductFilters = {
+type ProductAdminFilters = {
   search?: string;
   categoryId?: string;
   stock?: string;
@@ -13,20 +14,18 @@ type ProductFilters = {
   order?: "asc" | "desc";
 };
 
-// Hämtar produkter till kundens produktöversikt
-export async function getShopProducts(): Promise<Product[]> {
-  const response = await fetch(`${API_URL}/api/Products`);
-
-  if (!response.ok) {
-    throw new Error("Failed to load products.");
-  }
-
-  return response.json();
-}
+export type ProductFilters = {
+  search?: string;
+  categoryId?: number;
+  minPrice?: number;
+  maxPrice?: number;
+  sortBy?: string;
+  ascending?: boolean;
+};
 
 // Hämtar en produkt utifrån produktens id
 export async function getProductById(id: number): Promise<Product> {
-  const response = await fetch(`${API_URL}/api/Products/${id}`);
+  const response = await apiFetch(`${API_URL}/api/Products/${id}`);
 
   if (!response.ok) {
     throw new Error("Failed to load product.");
@@ -35,11 +34,53 @@ export async function getProductById(id: number): Promise<Product> {
   return response.json();
 }
 
-// Hämtar produkter från API:t med paginering och valda filter
+// For the Web page
+
 export async function getProducts(
-  page: number = 1,
-  limit: number = DEFAULT_LIMIT,
+  page: number = DEFAULT_PAGE,
+  pageSize: number = DEFAULT_PAGE_SIZE,
   filters: ProductFilters = {},
+): Promise<ProductsResponse> {
+  const params = new URLSearchParams({
+    Page: page.toString(),
+    PageSize: pageSize.toString(),
+    Ascending: (filters.ascending ?? true).toString(),
+  });
+
+  if (filters.search) {
+    params.set("Search", filters.search);
+  }
+
+  if (filters.categoryId !== undefined) {
+    params.set("CategoryId", filters.categoryId.toString());
+  }
+
+  if (filters.minPrice !== undefined) {
+    params.set("MinPrice", filters.minPrice.toString());
+  }
+
+  if (filters.maxPrice !== undefined) {
+    params.set("MaxPrice", filters.maxPrice.toString());
+  }
+
+  if (filters.sortBy) {
+    params.set("SortBy", filters.sortBy);
+  }
+
+  const response = await apiFetch(`/api/Products?${params.toString()}`);
+
+  if (!response.ok) {
+    throw new Error("Failed to load products.");
+  }
+
+  return response.json();
+}
+
+// For the admin
+export async function getAdminProducts(
+  page: number = DEFAULT_PAGE,
+  limit: number = DEFAULT_PAGE_SIZE,
+  filters: ProductAdminFilters = {},
 ): Promise<ProductsResponse> {
   const params = new URLSearchParams({
     _page: page.toString(),
@@ -70,19 +111,7 @@ export async function getProducts(
     params.set("stock_gte", LowStock.toString());
   }
 
-  const response = await fetch(`${API_URL}/products?${params.toString()}`);
-
-  if (!response.ok) {
-    throw new Error("Failed to load products.");
-  }
-
-  return response.json();
-}
-
-export async function getAllProducts(): Promise<ProductsResponse> {
-  const response = await fetch(
-    `${API_URL}/products?_sort=id&_order=desc&_expand=category`,
-  );
+  const response = await apiFetch(`/products?${params.toString()}`);
 
   if (!response.ok) {
     throw new Error("Failed to load products.");
