@@ -1,0 +1,8 @@
+/* Produktöversikt */
+.productsPage {
+  inline-size: min(100%, 90rem);
+  margin-inline: auto;
+
+  padding-block: var(--space-xl);
+  padding-inline: var(--space-lg);
+}
