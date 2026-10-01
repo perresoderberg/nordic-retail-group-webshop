@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-
 import ProductGrid from "../products/components/ProductGrid";
 import { getShopProducts } from "../products/product-api";
 import type { Product } from "../products/types";
 import { useCart } from "../cart/useCart";
+import styles from "./products.module.css";
 
 export function Products() {
   const { addItem } = useCart();
@@ -36,7 +36,7 @@ export function Products() {
   }, []);
 
   return (
-    <div id="main-content">
+    <div id="main-content" className={styles.productsPage}>
       <h1>Products</h1>
       {isLoading && <p role="status">Produkter laddas...</p>}
       {error && <p role="alert">{error}</p>}
