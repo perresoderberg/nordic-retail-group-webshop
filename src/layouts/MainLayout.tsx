@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
+import AddedToCartModal from "../cart/components/AddedToCartModal";
 
 export default function MainLayout() {
   return (
@@ -12,6 +13,8 @@ export default function MainLayout() {
       </main>
 
       <Footer />
+
+      <AddedToCartModal />
     </div>
   );
 }

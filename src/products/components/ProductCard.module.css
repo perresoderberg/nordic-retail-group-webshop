@@ -16,8 +16,7 @@
     box-shadow 0.2s ease;
 }
 
-/* Köpknapp */
-.addToCartBtn {
+.addToCartButton {
   margin-inline: var(--space-md);
   margin-block-end: var(--space-md);
 

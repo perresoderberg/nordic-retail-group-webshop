@@ -2,32 +2,24 @@ import { Link } from "react-router-dom";
 
 import styles from "./ProductCard.module.css";
 import type { Product } from "../types";
-import type { CartItem } from "../../cart/types";
+import { useCart } from "../../cart/useCart";
 
 interface ProductCardProps {
   product: Product;
-  onAddToCart: (item: Omit<CartItem, "quanitity">) => void;
 }
 
-export default function ProductCard({
-  product,
-  onAddToCart,
-}: ProductCardProps) {
-  function addToCartEventHandler() {
-    console.log("addToCartEventHandler");
+export default function ProductCard({ product }: ProductCardProps) {
+  const { addItem } = useCart();
 
-    const cartItem: CartItem = {
+  function addToCartEventHandler() {
+    addItem({
       productId: product.id,
       title: product.title,
       price: product.price,
       thumbnail: product.thumbnail,
-      quantity: 1,
-    };
-
-    console.log("ProductCard -> The cart item to pass:", cartItem);
-
-    onAddToCart(cartItem);
+    });
   }
+
   return (
     <article className={styles.productCard}>
       {/* Hela produktkortet länkar till produktens detaljsida */}
@@ -49,7 +41,10 @@ export default function ProductCard({
           <p className={styles.productPrice}>{product.price.toFixed(2)} kr</p>
         </div>
       </Link>
-      <button className={styles.addToCartBtn} onClick={addToCartEventHandler}>
+      <button
+        className={styles.addToCartButton}
+        onClick={addToCartEventHandler}
+      >
         Köp
       </button>
     </article>
