@@ -1,23 +1,50 @@
 import CartList from "../cart/components/CartList";
 import CartSummary from "../cart/components/CartSummary";
 import { useCart } from "../cart/useCart";
+import styles from "./basket.module.css";
 
 export default function Basket() {
   const { items, total, removeItem, setQuantity } = useCart();
 
   return (
-    <section className="mx-auto w-[90%] max-w-7xl py-10">
-      <h1 className="mb-8 text-3xl font-bold">Shopping cart</h1>
+    <>
+      <section className={styles.basket}>
+        <h1>Din varukorg</h1>
 
-      <div className="grid gap-8 lg:grid-cols-[1fr_350px]">
-        <CartList
-          items={items}
-          onRemove={removeItem}
-          onQuantityChange={setQuantity}
-        />
+        <div className={styles.wrapper}>
+          <div className={styles.content}>
+            <CartList
+              items={items}
+              onRemove={removeItem}
+              onQuantityChange={setQuantity}
+            />
+          </div>
+          <CartSummary total={total} />
+        </div>
+      </section>
+      <section className={styles.checkout}>
+        <h1>Slutför köp</h1>
 
-        <CartSummary total={total} />
-      </div>
-    </section>
+        <div className={styles.checkoutContent}>
+          <h2>Dina uppgifter</h2>
+
+          <div className={styles.inputGroup}>
+            <input
+              type="email"
+              placeholder="E-postadress"
+              className={styles.email}
+            />
+
+            <input
+              type="tel"
+              placeholder="Mobiltelefonnummer"
+              className={styles.phone}
+            />
+          </div>
+
+          <button type="button">Fortsätt till leverans</button>
+        </div>
+      </section>
+    </>
   );
 }

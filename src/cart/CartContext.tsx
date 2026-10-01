@@ -13,6 +13,10 @@ export interface CartContextValue {
   removeItem: (productId: number) => void;
   setQuantity: (productId: number, quantity: number) => void;
   clearCart: () => void;
+
+  lastAddedItem: CartItem | null;
+  isAddedModalOpen: boolean;
+  closeAddedModal: () => void;
 }
 
 export const CartContext = createContext<CartContextValue | null>(null);

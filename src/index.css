@@ -22,6 +22,10 @@
   --color-header-text: #c9ece1;
   --color-header-text-hover: #f2f3f3;
   --color-buy-badge: #1f4d3e;
+  --color-buy-button: #fbff00;
+
+  --color-hard-border: #111111;
+  --color-subtle-border: #d5d5d5;
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -39,6 +43,8 @@
   /* Skuggor */
   --shadow-sm: 0 0.125rem 0.5rem rgb(0 0 0 / 0.08);
   --shadow-md: 0 0.5rem 1.5rem rgb(0 0 0 / 0.1);
+  --shadow-lg: 0.2rem 0.2rem 1rem rgb(0 0 0 / 0.4);
+  --shadow-bottom-lg: 0 -0.25rem 1rem rgb(0 0 0 / 0.15);
 
   font-family: var(--font-primary);
   color: var(--color-text);

@@ -16,7 +16,7 @@
     box-shadow 0.2s ease;
 }
 
-.addToCartBtn {
+.addToCartButton {
   position: absolute;
   right: 10px;
   bottom: 10px;
@@ -25,7 +25,9 @@
   font-size: 1.75rem;
   text-transform: uppercase;
   color: var(--color-header-text);
+  border: 1px white solid;
   background-color: var(--color-buy-badge);
+  box-shadow: var(--shadow-lg);
 }
 
 /* Länk som gör hela kortet klickbart */

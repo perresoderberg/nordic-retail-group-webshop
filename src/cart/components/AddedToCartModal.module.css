@@ -1,0 +1,105 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(0 0 0 / 35%);
+}
+
+.modal {
+  width: min(90%, 50rem);
+  background: white;
+  box-shadow: var(--shadow-lg);
+  border-radius: 0.5rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+
+  h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  .closeButton {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+}
+
+.product {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 1rem 2rem;
+  padding: 1rem;
+  border: 1px solid var(--color-subtle-border);
+  border-radius: 0.25rem;
+
+  .productImage {
+    width: 7rem;
+    height: 7rem;
+  }
+  .productInfo {
+    margin: 0.75rem 0 0 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    h3 {
+      font-size: 1rem;
+    }
+  }
+
+  .price {
+    margin: 0.75rem 0 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+}
+
+.actions {
+  /* display: grid;
+  grid-template-columns: 1fr 1fr; */
+
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  gap: 1.5rem;
+  margin-top: 1rem;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--color-subtle-border);
+
+  .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 5rem;
+    min-width: 14rem;
+    border: 1px solid var(--color-subtle-border);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+
+    text-transform: uppercase;
+  }
+
+  .continueButton {
+    flex: 1;
+  }
+
+  .checkoutButton {
+    flex: 1;
+    background-color: var(--color-buy-button);
+    text-decoration: none;
+  }
+}

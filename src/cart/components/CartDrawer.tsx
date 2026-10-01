@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useCart } from "../useCart";
 import styles from "./CartDrawer.module.css";
 
@@ -52,9 +53,13 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
         <footer className={styles.footer}>
           <CartSummary total={total} />
 
-          <button type="button" className={styles.checkoutButton}>
+          <Link
+            to="/basket"
+            className={styles.checkoutButton}
+            onClick={onClose}
+          >
             Gå till kassan
-          </button>
+          </Link>
         </footer>
       </aside>
     </>

@@ -1,11 +1,23 @@
 import styles from "./ProductDetails.module.css";
 import type { Product } from "../types";
+import { useCart } from "../../cart/useCart";
 
 interface ProductDetailsProps {
   product: Product;
 }
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
+  const { addItem } = useCart();
+
+  function addToCartEventHandler() {
+    addItem({
+      productId: product.id,
+      title: product.title,
+      price: product.price,
+      thumbnail: product.thumbnail,
+    });
+  }
+
   return (
     <article className={styles.productDetails}>
       {/* Visar produktens huvudbild */}
@@ -37,7 +49,11 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         </p>
 
         {/* Köpknappens funktionalitet kopplas på senare */}
-        <button className={styles.addToCartButton} type="button">
+        <button
+          className={styles.addToCartButton}
+          type="button"
+          onClick={addToCartEventHandler}
+        >
           Lägg i varukorg
         </button>
       </div>
