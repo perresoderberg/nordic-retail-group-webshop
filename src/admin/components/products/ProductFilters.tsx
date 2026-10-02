@@ -4,6 +4,8 @@ import { useSearchParams } from "react-router-dom";
 import styles from "./ProductFilters.module.css";
 import type { Category } from "../../../types/types";
 
+import filter from "../../../assets/icons/filter.svg";
+
 type ProductFiltersProps = {
   categories?: Category[];
 };
@@ -94,13 +96,7 @@ export default function ProductFilters({ categories }: ProductFiltersProps) {
       </select>
 
       <button type="submit" className={styles.filterButton}>
-        <img
-          src="/icons/filter.svg"
-          alt=""
-          width={16}
-          height={16}
-          aria-hidden="true"
-        />
+        <img src={filter} alt="" width={16} height={16} aria-hidden="true" />
 
         <span>Filter</span>
       </button>

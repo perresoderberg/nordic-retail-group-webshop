@@ -1,0 +1,58 @@
+.row {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.cell {
+  padding: 1rem;
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+.textLeft {
+  text-align: left;
+}
+
+.textRight {
+  text-align: right;
+}
+
+.product {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.thumbnail {
+  object-fit: cover;
+}
+
+.title {
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.sku {
+  font-size: 0.75rem;
+  color: #d1d5db;
+}
+
+.outOfStock {
+  color: #ef4444;
+}
+
+.lowStock {
+  color: #f97316;
+}
+
+.inStock {
+  color: #22c55e;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.editIcon {
+  cursor: pointer;
+}

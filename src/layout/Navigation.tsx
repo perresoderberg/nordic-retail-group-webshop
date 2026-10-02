@@ -11,9 +11,12 @@ import CartDrawer from "../cart/components/CartDrawer";
 import { useCart } from "../cart/useCart";
 import { getCategories } from "../categories/category-api";
 import type { Category } from "../types/types";
+import { useAuth } from "../auth/useAuth";
 
 export default function Navigation() {
   const { itemCount } = useCart();
+
+  const { isAdmin } = useAuth();
 
   // Håller reda på om kundkorgen är öppen
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -80,10 +83,7 @@ export default function Navigation() {
 
   return (
     <>
-      <nav
-        className={styles.topbarContainer}
-        aria-label="Huvudnavigation"
-      >
+      <nav className={styles.topbarContainer} aria-label="Huvudnavigation">
         {/* Logotyp och länk till startsidan */}
         <Link
           to="/"
@@ -100,23 +100,15 @@ export default function Navigation() {
 
         {/* Navigation för desktop */}
         <div className={styles.navigationLinks}>
-          <Link
-            to="/products"
-            className={styles.navigationLink}
-          >
+          <Link to="/products" className={styles.navigationLink}>
             Alla produkter
           </Link>
 
-          <div
-            ref={categoryMenuRef}
-            className={styles.categoryMenu}
-          >
+          <div ref={categoryMenuRef} className={styles.categoryMenu}>
             <button
               type="button"
               className={styles.categoryButton}
-              onClick={() =>
-                setIsCategoryMenuOpen(!isCategoryMenuOpen)
-              }
+              onClick={() => setIsCategoryMenuOpen(!isCategoryMenuOpen)}
               aria-expanded={isCategoryMenuOpen}
               aria-controls="desktop-category-menu"
             >
@@ -134,9 +126,7 @@ export default function Navigation() {
                     key={category.id}
                     to={`/products?categoryId=${category.id}`}
                     className={styles.categoryLink}
-                    onClick={() =>
-                      setIsCategoryMenuOpen(false)
-                    }
+                    onClick={() => setIsCategoryMenuOpen(false)}
                   >
                     {category.name}
                   </Link>
@@ -148,17 +138,18 @@ export default function Navigation() {
 
         {/* Konto, kundkorg och mobilmeny */}
         <div className={styles.navigationActions}>
+          {isAdmin && (
+            <Link to="/admin" className={styles.navigationLink}>
+              Admin
+            </Link>
+          )}
           <Link
             to="/login"
             className={styles.actionLink}
             aria-label="Logga in"
             onClick={closeMobileMenu}
           >
-            <img
-              className={styles.navigationIcon}
-              src={person}
-              alt=""
-            />
+            <img className={styles.navigationIcon} src={person} alt="" />
           </Link>
 
           <button
@@ -168,17 +159,10 @@ export default function Navigation() {
             aria-label={`Kundkorg med ${itemCount} produkter`}
           >
             <div className={styles.cartBadgeContainer}>
-              <img
-                className={styles.navigationIcon}
-                src={basket}
-                alt=""
-              />
+              <img className={styles.navigationIcon} src={basket} alt="" />
 
               {itemCount > 0 && (
-                <div
-                  className={styles.cartItemsOnBadge}
-                  aria-hidden="true"
-                >
+                <div className={styles.cartItemsOnBadge} aria-hidden="true">
                   {itemCount}
                 </div>
               )}
@@ -192,9 +176,7 @@ export default function Navigation() {
             onClick={toggleMobileMenu}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
-            aria-label={
-              isMenuOpen ? "Stäng meny" : "Öppna meny"
-            }
+            aria-label={isMenuOpen ? "Stäng meny" : "Öppna meny"}
           >
             <span aria-hidden="true">☰</span>
           </button>
@@ -203,10 +185,7 @@ export default function Navigation() {
 
       {/* Navigation för mobil */}
       {isMenuOpen && (
-        <div
-          id="mobile-menu"
-          className={styles.mobileMenu}
-        >
+        <div id="mobile-menu" className={styles.mobileMenu}>
           <Link
             to="/products"
             className={styles.mobileMenuLink}
@@ -218,9 +197,7 @@ export default function Navigation() {
           <button
             type="button"
             className={styles.mobileCategoryButton}
-            onClick={() =>
-              setIsCategoryMenuOpen(!isCategoryMenuOpen)
-            }
+            onClick={() => setIsCategoryMenuOpen(!isCategoryMenuOpen)}
             aria-expanded={isCategoryMenuOpen}
             aria-controls="mobile-category-menu"
           >
@@ -248,10 +225,7 @@ export default function Navigation() {
         </div>
       )}
 
-      <CartDrawer
-        isOpen={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
-      />
+      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </>
   );
 }

@@ -1,12 +1,12 @@
 import DeleteButton from "./DeleteButton";
 import { LowStock } from "../../../constants/inventory";
 import type { Product } from "../../../products/types";
+import styles from "./ProductRow.module.css";
+import pen from "../../../assets/icons/pen.svg";
 
 type Props = {
   product: Product;
 };
-
-const cellStyle = "p-4 text-s text-gray-400";
 
 export default function ProductRow({ product }: Props) {
   if (product.stock == null) return null;
@@ -16,55 +16,57 @@ export default function ProductRow({ product }: Props) {
 
   if (product.stock === 0) {
     stockText = "Out Of Stock";
-    stockColor = "text-red-500";
+    stockColor = styles.outOfStock;
   } else if (product.stock < LowStock) {
     stockText = "Low Stock";
-    stockColor = "text-orange-500";
+    stockColor = styles.lowStock;
   } else {
     stockText = "In Stock";
-    stockColor = "text-green-500";
+    stockColor = styles.inStock;
   }
 
   return (
-    <tr className="border-b border-gray-200">
-      <td className={`${cellStyle} text-left`}>
-        <div className="flex items-center gap-4">
+    <tr className={styles.row}>
+      <td className={`${styles.cell} ${styles.textLeft}`}>
+        <div className={styles.product}>
           <img
             src={product.thumbnail}
             alt={product.title}
             width={40}
             height={40}
-            className=""
+            className={styles.thumbnail}
           />
 
           <div>
-            <div className="text-gray-800 font-bold">{product.title}</div>
-            <div className="text-xs text-gray-300">SKU: {product.sku}</div>
+            <div className={styles.title}>{product.title}</div>
+            <div className={styles.sku}>SKU: {product.sku}</div>
           </div>
         </div>
       </td>
 
-      <td className={`${cellStyle} text-left`}>{product.brand}</td>
+      <td className={`${styles.cell} ${styles.textLeft}`}>{product.brand}</td>
 
-      <td className={`${cellStyle} text-left`}>{product.category?.name}</td>
+      <td className={`${styles.cell} ${styles.textLeft}`}>
+        {product.category?.name}
+      </td>
 
-      <td className={`${cellStyle} text-right`}>
+      <td className={`${styles.cell} ${styles.textRight}`}>
         <span className={stockColor}>{stockText}</span>
         <span> ({product.stock})</span>
       </td>
 
-      <td className={`${cellStyle} text-right`}>€{product.price}</td>
+      <td className={`${styles.cell} ${styles.textRight}`}>€{product.price}</td>
 
-      <td className={`${cellStyle} text-left`}>
-        <div className="flex gap-4">
+      <td className={`${styles.cell} ${styles.textLeft}`}>
+        <div className={styles.actions}>
           <DeleteButton id={product.id} />
 
           <img
-            src="/icons/pen.svg"
+            src={pen}
             alt="Edit"
             width={20}
             height={20}
-            className="cursor-pointer"
+            className={styles.editIcon}
           />
         </div>
       </td>

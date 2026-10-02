@@ -1,0 +1,48 @@
+.tableContainer {
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background-color: white;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.headerRow {
+  border-bottom: 1px solid #e5e7eb;
+  background-color: #fafafa;
+}
+
+.headerCell {
+  padding: 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.textLeft {
+  text-align: left;
+}
+
+.textRight {
+  text-align: right;
+}
+
+.sortableHeader {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.sortableHeader:hover {
+  color: #111827;
+}
+
+.sortIcon {
+  margin-right: 0;
+}

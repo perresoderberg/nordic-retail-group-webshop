@@ -1,6 +1,11 @@
 import { LowStock } from "../../../constants/inventory";
 import type { Product } from "../../../products/types";
 
+import product from "../../../assets/icons/product.svg";
+import checkcircle from "../../../assets/icons/check-circle.svg";
+import warning from "../../../assets/icons/warning.svg";
+import cancel from "../../../assets/icons/cancel.svg";
+
 function InventoryStat(props: {
   label: string;
   value: number;
@@ -42,25 +47,25 @@ export default function InventoryStats({ products }: { products: Product[] }) {
       <InventoryStat
         label="PRODUCTS"
         value={totalProducts}
-        icon="/icons/product.svg"
+        icon={product}
         color="text-purple-500"
       />
       <InventoryStat
         label="IN STOCK"
         value={totalStock}
-        icon="/icons/check-circle.svg"
+        icon={checkcircle}
         color="text-green-600"
       />
       <InventoryStat
         label="LOW STOCK"
         value={lowStockProducts}
-        icon="/icons/warning.svg"
+        icon={warning}
         color="text-orange-500"
       />
       <InventoryStat
         label="OUT OF STOCK"
         value={outOfStockProducts}
-        icon="/icons/cancel.svg"
+        icon={cancel}
         color="text-red-500"
       />
     </article>
