@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import styles from "./Pagination.module.css";
 
 type PaginationItem =
@@ -22,17 +22,29 @@ export default function Pagination({
   totalPages,
   pageSize,
 }: Props) {
+  const [searchParams] = useSearchParams();
+
   if (!totalPages) return null;
 
   const items: PaginationItem[] = [];
 
-  // First page
+  // Skapar en URL och behåller befintliga filter
+  function createPageUrl(page: number) {
+    const params = new URLSearchParams(searchParams);
+
+    params.set("page", page.toString());
+    params.set("pageSize", pageSize.toString());
+
+    return `?${params.toString()}`;
+  }
+
+  // Första sidan
   items.push({
     type: "page",
     page: 1,
   });
 
-  // Left gap
+  // Mellanrum till vänster
   if (currentPage > 3) {
     items.push({
       type: "gap",
@@ -40,7 +52,7 @@ export default function Pagination({
     });
   }
 
-  // Previous page
+  // Föregående sida
   if (currentPage > 2) {
     items.push({
       type: "page",
@@ -48,7 +60,7 @@ export default function Pagination({
     });
   }
 
-  // Current page
+  // Aktuell sida
   if (currentPage !== 1 && currentPage !== totalPages) {
     items.push({
       type: "page",
@@ -56,7 +68,7 @@ export default function Pagination({
     });
   }
 
-  // Next page
+  // Nästa sida
   if (currentPage < totalPages - 1) {
     items.push({
       type: "page",
@@ -64,7 +76,7 @@ export default function Pagination({
     });
   }
 
-  // Right gap
+  // Mellanrum till höger
   if (currentPage < totalPages - 2) {
     items.push({
       type: "gap",
@@ -72,7 +84,7 @@ export default function Pagination({
     });
   }
 
-  // Last page
+  // Sista sidan
   if (totalPages > 1) {
     items.push({
       type: "page",
@@ -81,12 +93,12 @@ export default function Pagination({
   }
 
   return (
-    <nav className={styles.pagination} aria-label="Pagination">
+    <nav className={styles.pagination} aria-label="Sidnavigering">
       {currentPage > 1 ? (
         <Link
-          to={`?page=${currentPage - 1}&pageSize=${pageSize}`}
+          to={createPageUrl(currentPage - 1)}
           className={styles.button}
-          aria-label="Previous page"
+          aria-label="Föregående sida"
         >
           &lt;
         </Link>
@@ -111,13 +123,15 @@ export default function Pagination({
         return (
           <Link
             key={item.page}
-            to={`?page=${item.page}&pageSize=${pageSize}`}
+            to={createPageUrl(item.page)}
             className={
               item.page === currentPage
                 ? `${styles.button} ${styles.selected}`
                 : styles.button
             }
-            aria-current={item.page === currentPage ? "page" : undefined}
+            aria-current={
+              item.page === currentPage ? "page" : undefined
+            }
           >
             {item.page}
           </Link>
@@ -126,9 +140,9 @@ export default function Pagination({
 
       {currentPage < totalPages ? (
         <Link
-          to={`?page=${currentPage + 1}&pageSize=${pageSize}`}
+          to={createPageUrl(currentPage + 1)}
           className={styles.button}
-          aria-label="Next page"
+          aria-label="Nästa sida"
         >
           &gt;
         </Link>
