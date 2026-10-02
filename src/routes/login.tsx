@@ -1,35 +1,17 @@
-import { useEffect, useState } from "react";
-import { supabase } from "../services/supabase";
-import styles from "./login.module.css";
+import { useAuth } from "../auth/useAuth";
 import LogoutButton from "../auth/LogoutButton";
 import LoginForm from "../auth/LoginForm";
+import styles from "./login.module.css";
 
 export default function Login() {
-  // Håller reda på om användaren är inloggad
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { user, isLoading } = useAuth();
 
-  // Kontrollerar och följer användarens session
-  useEffect(() => {
-    async function checkSession() {
-      const { data } = await supabase.auth.getSession();
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
-      setIsLoggedIn(!!data.session);
-    }
+  const isLoggedIn = user !== null;
 
-    checkSession();
-
-    // Lyssnar på när användaren loggar in eller ut
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setIsLoggedIn(!!session);
-    });
-
-    // Avslutar/städar bort lyssnaren när komponenten tas bort
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, []);
   return (
     <div id="main-content" className={styles.loginPage}>
       <section className={styles.loginCard} aria-labelledby="login-heading">
@@ -45,13 +27,7 @@ export default function Login() {
           </p>
         </div>
 
-        {isLoggedIn ? (
-          <div>
-            <LogoutButton />
-          </div>
-        ) : (
-          <LoginForm />
-        )}
+        {user ? <LogoutButton /> : <LoginForm />}
       </section>
     </div>
   );

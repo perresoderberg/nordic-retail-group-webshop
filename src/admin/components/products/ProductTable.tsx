@@ -1,5 +1,8 @@
 import type { Product } from "../../../products/types";
 import ProductRow from "./ProductRow";
+import styles from "./ProductTable.module.css";
+import arrowdown from "../../../assets/icons/arrow-down.svg";
+import arrowup from "../../../assets/icons/arrow-up.svg";
 
 type ProductTableProps = {
   products: Product[];
@@ -10,8 +13,6 @@ type ProductTableProps = {
   stock: string;
 };
 
-const headerCellStyle = "p-4 text-sm font-semibold text-gray-600";
-
 export default function ProductTable({
   products,
   sort,
@@ -21,11 +22,11 @@ export default function ProductTable({
   stock,
 }: ProductTableProps) {
   return (
-    <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
-      <table className="w-full">
+    <div className={styles.tableContainer}>
+      <table className={styles.table}>
         <thead>
-          <tr className="border-b border-gray-200 bg-[#FAFAFA]">
-            <th className={`${headerCellStyle} text-left`}>
+          <tr className={styles.headerRow}>
+            <th className={`${styles.headerCell} ${styles.textLeft}`}>
               <SortableHeader
                 column="title"
                 label="Title"
@@ -37,7 +38,7 @@ export default function ProductTable({
               />
             </th>
 
-            <th className={`${headerCellStyle} text-left`}>
+            <th className={`${styles.headerCell} ${styles.textLeft}`}>
               <SortableHeader
                 column="brand"
                 label="Brand"
@@ -49,7 +50,7 @@ export default function ProductTable({
               />
             </th>
 
-            <th className={`${headerCellStyle} text-left`}>
+            <th className={`${styles.headerCell} ${styles.textLeft}`}>
               <SortableHeader
                 column="categoryId"
                 label="Category"
@@ -61,7 +62,7 @@ export default function ProductTable({
               />
             </th>
 
-            <th className={`${headerCellStyle} text-right`}>
+            <th className={`${styles.headerCell} ${styles.textRight}`}>
               <SortableHeader
                 column="stock"
                 label="Stock"
@@ -73,7 +74,7 @@ export default function ProductTable({
               />
             </th>
 
-            <th className={`${headerCellStyle} text-right`}>
+            <th className={`${styles.headerCell} ${styles.textRight}`}>
               <SortableHeader
                 column="price"
                 label="Price"
@@ -85,7 +86,9 @@ export default function ProductTable({
               />
             </th>
 
-            <th className={`${headerCellStyle} text-left`}>Actions</th>
+            <th className={`${styles.headerCell} ${styles.textLeft}`}>
+              Actions
+            </th>
           </tr>
         </thead>
 
@@ -131,20 +134,13 @@ function SortableHeader({
   params.set("order", nextOrder);
 
   return (
-    <a
-      href={`/?${params.toString()}`}
-      className="inline-flex items-center gap-2"
-    >
-      <span className="ml-2">{label}</span>
+    <a href={`/admin?${params.toString()}`} className={styles.sortableHeader}>
+      <span>{label}</span>
 
       {column === currentSort && (
         <img
-          className="mr-0"
-          src={
-            currentOrder === "asc"
-              ? "/icons/arrow-down.svg"
-              : "/icons/arrow-up.svg"
-          }
+          className={styles.sortIcon}
+          src={currentOrder === "asc" ? arrowdown : arrowup}
           alt={
             currentOrder === "asc" ? "Sorted ascending" : "Sorted descending"
           }

@@ -1,13 +1,11 @@
 import { useFormStatus } from "react-dom";
+import styles from "./SaveButton.module.css";
 
 export function SaveButton() {
   const { pending } = useFormStatus();
 
   return (
-    <button
-      className="rounded p-2 text-white bg-accent hover:bg-warning"
-      type="submit"
-    >
+    <button className={styles.button} type="submit">
       {pending ? "Saving..." : "Save"}
     </button>
   );

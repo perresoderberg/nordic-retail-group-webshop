@@ -1,0 +1,10 @@
+.button {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  color: white;
+  background-color: var(--accent-color);
+}
+
+.button:hover {
+  background-color: var(--warning-color);
+}

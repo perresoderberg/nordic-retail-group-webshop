@@ -7,6 +7,7 @@ import Login from "./routes/login";
 import Basket from "./routes/basket";
 import { Products } from "./routes/products";
 import Product from "./routes/product";
+import Admin from "./routes/admin";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
       {
         path: "/basket",
         element: <Basket />,
+      },
+      {
+        path: "/admin",
+        element: <Admin />,
       },
     ],
   },
