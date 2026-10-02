@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./Navigation.module.css";
@@ -9,61 +9,249 @@ import basket from "../assets/icons/basket_white.svg";
 
 import CartDrawer from "../cart/components/CartDrawer";
 import { useCart } from "../cart/useCart";
+import { getCategories } from "../categories/category-api";
+import type { Category } from "../types/types";
 
 export default function Navigation() {
   const { itemCount } = useCart();
 
+  // Håller reda på om kundkorgen är öppen
   const [isCartOpen, setIsCartOpen] = useState(false);
+
+  // Håller reda på om mobilmenyn är öppen
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Håller reda på om kategorimenyn är öppen
+  const [isCategoryMenuOpen, setIsCategoryMenuOpen] = useState(false);
+
+  // Sparar kategorierna som hämtas från API:t
+  const [categories, setCategories] = useState<Category[]>([]);
+
+  // Referens till kategorimenyn på desktop
+  const categoryMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Hämtar kategorierna från API:t
+    async function loadCategories() {
+      try {
+        const data = await getCategories();
+        setCategories(data);
+      } catch {
+        console.error("Kategorierna kunde inte hämtas.");
+      }
+    }
+
+    loadCategories();
+  }, []);
+
+  useEffect(() => {
+    // Stänger kategorimenyn vid klick utanför den
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        categoryMenuRef.current &&
+        !categoryMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsCategoryMenuOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  // Öppnar och stänger mobilmenyn
+  function toggleMobileMenu() {
+    // Stänger kategorierna när mobilmenyn stängs
+    if (isMenuOpen) {
+      setIsCategoryMenuOpen(false);
+    }
+
+    setIsMenuOpen(!isMenuOpen);
+  }
+
+  // Stänger hela mobilmenyn
+  function closeMobileMenu() {
+    setIsMenuOpen(false);
+    setIsCategoryMenuOpen(false);
+  }
 
   return (
     <>
-      <nav className={styles.topbarContainer}>
+      <nav
+        className={styles.topbarContainer}
+        aria-label="Huvudnavigation"
+      >
+        {/* Logotyp och länk till startsidan */}
+        <Link
+          to="/"
+          className={styles.logoLink}
+          aria-label="Startsida"
+          onClick={closeMobileMenu}
+        >
+          <img
+            className={styles.navigationLogo}
+            src={logo}
+            alt="Nordic Retail Group"
+          />
+        </Link>
+
+        {/* Navigation för desktop */}
         <div className={styles.navigationLinks}>
-          <Link to="/" aria-label="Home">
-            <img
-              className={styles.navigationLogo}
-              src={logo}
-              alt="Nordic Retail Group"
-            />
-          </Link>
-
-          <Link to="/products" className={styles.navigationLink}>
-            All products
-          </Link>
-
           <Link
-            to="/products?category=electronics"
+            to="/products"
             className={styles.navigationLink}
           >
-            Electronics
+            Alla produkter
           </Link>
+
+          <div
+            ref={categoryMenuRef}
+            className={styles.categoryMenu}
+          >
+            <button
+              type="button"
+              className={styles.categoryButton}
+              onClick={() =>
+                setIsCategoryMenuOpen(!isCategoryMenuOpen)
+              }
+              aria-expanded={isCategoryMenuOpen}
+              aria-controls="desktop-category-menu"
+            >
+              Kategorier
+              <span aria-hidden="true">▾</span>
+            </button>
+
+            {isCategoryMenuOpen && (
+              <div
+                id="desktop-category-menu"
+                className={styles.categoryDropdown}
+              >
+                {categories.map((category) => (
+                  <Link
+                    key={category.id}
+                    to={`/products?categoryId=${category.id}`}
+                    className={styles.categoryLink}
+                    onClick={() =>
+                      setIsCategoryMenuOpen(false)
+                    }
+                  >
+                    {category.name}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
 
+        {/* Konto, kundkorg och mobilmeny */}
         <div className={styles.navigationActions}>
-          <Link to="/login" aria-label="Log in">
-            <img className={styles.navigationIcon} src={person} alt="Login" />
+          <Link
+            to="/login"
+            className={styles.actionLink}
+            aria-label="Logga in"
+            onClick={closeMobileMenu}
+          >
+            <img
+              className={styles.navigationIcon}
+              src={person}
+              alt=""
+            />
           </Link>
 
           <button
             type="button"
             className={styles.cartButton}
             onClick={() => setIsCartOpen(true)}
-            aria-label={`Shopping cart with ${itemCount} items`}
+            aria-label={`Kundkorg med ${itemCount} produkter`}
           >
             <div className={styles.cartBadgeContainer}>
               <img
                 className={styles.navigationIcon}
                 src={basket}
-                alt="Shopping cart"
+                alt=""
               />
+
               {itemCount > 0 && (
-                <div className={styles.cartItemsOnBadge}>{itemCount}</div>
+                <div
+                  className={styles.cartItemsOnBadge}
+                  aria-hidden="true"
+                >
+                  {itemCount}
+                </div>
               )}
             </div>
           </button>
+
+          {/* Öppnar och stänger mobilmenyn */}
+          <button
+            type="button"
+            className={styles.menuButton}
+            onClick={toggleMobileMenu}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
+            aria-label={
+              isMenuOpen ? "Stäng meny" : "Öppna meny"
+            }
+          >
+            <span aria-hidden="true">☰</span>
+          </button>
         </div>
       </nav>
-      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+
+      {/* Navigation för mobil */}
+      {isMenuOpen && (
+        <div
+          id="mobile-menu"
+          className={styles.mobileMenu}
+        >
+          <Link
+            to="/products"
+            className={styles.mobileMenuLink}
+            onClick={closeMobileMenu}
+          >
+            Alla produkter
+          </Link>
+
+          <button
+            type="button"
+            className={styles.mobileCategoryButton}
+            onClick={() =>
+              setIsCategoryMenuOpen(!isCategoryMenuOpen)
+            }
+            aria-expanded={isCategoryMenuOpen}
+            aria-controls="mobile-category-menu"
+          >
+            Kategorier
+            <span aria-hidden="true">▾</span>
+          </button>
+
+          {isCategoryMenuOpen && (
+            <div
+              id="mobile-category-menu"
+              className={styles.mobileCategoryMenu}
+            >
+              {categories.map((category) => (
+                <Link
+                  key={category.id}
+                  to={`/products?categoryId=${category.id}`}
+                  className={styles.mobileCategoryLink}
+                  onClick={closeMobileMenu}
+                >
+                  {category.name}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      <CartDrawer
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+      />
     </>
   );
 }

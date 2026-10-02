@@ -1,21 +1,113 @@
+/* Startsida */
 .wrapper {
-  margin-inline: auto;
-  text-align: center;
-  margin-block: 1rem;
+  inline-size: 100%;
 }
-section {
+
+/* Hero */
+.hero {
+  position: relative;
+
+  background-color: var(--color-surface);
+}
+
+/* Hero-bild */
+.heroImage {
+  display: block;
+  inline-size: 100%;
+  block-size: 22rem;
+
+  object-fit: cover;
+}
+
+/* Hero-innehåll */
+.heroContent {
+  position: absolute;
+  inset-block-start: 40%;
+  inset-inline: var(--space-lg);
+
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
 
-  gap: 1rem;
+  padding: var(--space-md);
 
-  h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    color: var(--color-header);
+  background-color: rgb(255 255 255 / 68%);
+  border-radius: var(--radius-lg);
+
+  transform: translateY(-40%);
+}
+
+/* Hero-rubrik */
+.heroTitle {
+  margin: 0;
+
+  color: var(--color-primary);
+
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+/* Hero-beskrivning */
+.heroDescription {
+  margin: 0;
+
+  color: var(--color-hard-border);
+
+  font-size: 1.125rem;
+  line-height: 1.4;
+}
+
+/* Länk till produktöversikten */
+.heroLink {
+  display: inline-block;
+
+  padding-block: var(--space-sm);
+  padding-inline: var(--space-lg);
+
+  color: var(--color-surface);
+  background-color: var(--color-primary);
+
+  border-radius: var(--radius-md);
+
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Visuell återkoppling vid hover */
+.heroLink:hover {
+  background-color: var(--color-primary-hover);
+}
+
+/* Tydligt fokus vid tangentbordsnavigering */
+.heroLink:focus-visible {
+  outline: 0.1875rem solid var(--color-accent);
+  outline-offset: 0.1875rem;
+}
+
+/* Tablet och desktop */
+@media (min-width: 48rem) {
+  .heroImage {
+    block-size: 28rem;
   }
-  h2 {
-    font-size: 2rem;
-    color: var(--color-header);
+
+  .heroContent {
+    inset-inline-start: var(--space-2xl);
+    inset-inline-end: auto;
+    inset-block-start: 50%;
+    inset-block-end: auto;
+
+    inline-size: min(30rem, calc(100% - 4rem));
+    padding: var(--space-lg);
+
+    transform: translateY(-50%);
+  }
+
+  .heroTitle {
+    font-size: 3rem;
+  }
+
+  .heroDescription {
+    font-size: 1.25rem;
   }
 }
