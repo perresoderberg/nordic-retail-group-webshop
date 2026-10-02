@@ -26,6 +26,7 @@ export function Products() {
     async function loadProducts() {
       try {
         // Hämtar produkter med vald kategori från URL:en
+        // Hämtar produkter med vald kategori från URL:en
         const data = await getProducts(page, pageSize, {
           categoryId: categoryId ? Number(categoryId) : undefined,
         });
