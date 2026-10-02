@@ -1,75 +1,138 @@
+/* Footer */
 .footer {
-  background-color: black;
+  background-color: var(--color-header);
   color: #d1d5db; /* text-gray-300 */
+}
 
+/* Innehållet i footern */
+.footerContent {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 80rem; /* max-w-7xl */
+  margin-inline: auto;
+  gap: 2rem; /* gap-8 */
+  padding-block: var(--space-xl);
+  padding-inline: var(--space-md);
+}
+
+/* Kolumn i footern */
+.footerColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Rubriker */
+.footerTitle {
+  margin-block: 0 1rem; /* mb-4 */
+  font-size: 1.125rem; /* text-lg */
+  font-weight: 600; /* font-semibold */
+  color: white; /* text-white */
+}
+
+/* Företagsnamn */
+.footerBrand {
+  margin-block-end: 0.5rem; /* mb-2 */
+}
+
+/* Företagsbeskrivning */
+.footerText {
+  max-inline-size: 14rem;
+  margin-block: 0 var(--space-md);
+  font-size: 0.875rem; /* text-sm */
+  line-height: 1.6;
+}
+
+/* Sociala medier */
+.socialLinks {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+/* Social ikon */
+.socialIcon {
+  display: grid;
+  place-items: center;
+  inline-size: 2rem;
+  block-size: 2rem;
+  color: inherit;
+}
+
+/* SVG-ikoner */
+.socialIcon svg {
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Facebook-ikonen är fylld */
+.socialIcon:nth-child(2) svg {
+  fill: currentColor;
+  stroke: none;
+}
+
+/* Länklista */
+.footerLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* space-y-2 */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem; /* text-sm */
+}
+
+/* Länkar */
+.footerLinks a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footerLinks a:hover {
+  color: white; /* hover:text-white */
+}
+
+/* Tydligt fokus vid tangentbordsnavigering */
+.footerLinks a:focus-visible {
+  outline: 0.1875rem solid var(--color-accent);
+  outline-offset: 0.1875rem;
+}
+
+/* Nedersta delen av footern */
+.footerBottom {
+  border-block-start: 1px solid #1f2937; /* border-gray-800 */
+}
+
+/* Copyright */
+.footerBottomContent {
+  display: flex;
+  width: 90%;
+  max-width: 80rem; /* max-w-7xl */
+  margin-inline: auto;
+  align-items: center;
+  justify-content: center;
+  padding-block: 1.25rem; /* py-5 */
+  font-size: 0.75rem; /* text-xs */
+  color: #6b7280; /* text-gray-500 */
+  text-align: center;
+}
+
+/* Tablet */
+@media (min-width: 48rem) {
   .footerContent {
-    display: grid;
-    max-width: 80rem; /* max-w-7xl */
-    margin-inline: auto;
-    gap: 2rem; /* gap-8 */
-    padding-block: 1rem; /* py-4 */
-  }
-
-  .footerTitle {
-    margin-bottom: 1rem; /* mb-4 */
-    font-size: 1.125rem; /* text-lg */
-    font-weight: 600; /* font-semibold */
-    color: white; /* text-white */
-  }
-
-  .footerBrand {
-    margin-bottom: 0.5rem; /* mb-2 */
-  }
-
-  .footerText {
-    font-size: 0.875rem; /* text-sm */
-  }
-
-  .footerLinks {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem; /* space-y-2 */
-
-    margin: 0;
-    padding: 0;
-
-    list-style: none;
-    font-size: 0.875rem; /* text-sm */
-
-    a {
-      color: inherit;
-      text-decoration: none;
-
-      &:hover {
-        color: white; /* hover:text-white */
-      }
-    }
-  }
-
-  .footerBottom {
-    border-top: 1px solid #1f2937; /* border-gray-800 */
-  }
-
-  .footerBottomContent {
-    display: flex;
-    width: 90%;
-    max-width: 80rem; /* max-w-7xl */
-    margin-inline: auto;
-
-    align-items: center;
-    justify-content: space-between;
-
-    padding-block: 1.25rem; /* py-5 */
-
-    font-size: 0.75rem; /* text-xs */
-    color: #6b7280; /* text-gray-500 */
+    grid-template-columns: repeat(2, 1fr);
+    padding-inline: var(--space-xl);
   }
 }
 
-@media (min-width: 768px) {
-  .footer {
-    .footerContent {
-      grid-template-columns: repeat(4, 1fr);
-    }
+/* Desktop */
+@media (min-width: 64rem) {
+  .footerContent {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
