@@ -79,6 +79,10 @@
 .productTitle {
   margin: 0;
   max-inline-size: 16rem;
+  /* Reserverar plats för två rader i produktnamnet */
+  /* min-block-size: 2.4em; */
+  /* Reserverar plats för tre rader i produktnamnet */
+  min-block-size: 3.6em;
   font-size: 1.125rem;
 }
 
