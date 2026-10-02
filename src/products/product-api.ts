@@ -25,7 +25,10 @@ export type ProductFilters = {
 
 // Hämtar en produkt utifrån produktens id
 export async function getProductById(id: number): Promise<Product> {
-  const response = await apiFetch(`${API_URL}/api/Products/${id}`);
+  // const response = await apiFetch(`${API_URL}/api/Products/${id}`);
+  
+  // Hämtar produkten från API:t
+const response = await apiFetch(`/api/Products/${id}`);
 
   if (!response.ok) {
     throw new Error("Failed to load product.");
