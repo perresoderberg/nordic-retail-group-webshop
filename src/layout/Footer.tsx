@@ -110,7 +110,8 @@ export default function Footer() {
               <Link to="/login">Logga in</Link>
             </li>
             <li>
-              <Link to="/cart">Varukorg</Link>
+              {/* Länk till varukorgen */}
+              <Link to="/basket">Varukorg</Link>
             </li>
           </ul>
         </div>
@@ -119,7 +120,8 @@ export default function Footer() {
       {/* Copyright */}
       <div className={styles.footerBottom}>
         <div className={styles.footerBottomContent}>
-          <span>© 2026 Nordic Retail Group</span>
+          {/* Visar aktuellt år automatiskt */}
+          <span>© {new Date().getFullYear()} Nordic Retail Group</span>
         </div>
       </div>
     </footer>
