@@ -19,7 +19,7 @@ export default function FeaturedProducts({
         id="featured-products-heading"
         className={styles.title}
       >
-        Utvalda produkter
+        Populära produkter
       </h2>
 
       {/* Visar de utvalda produkterna */}
