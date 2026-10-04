@@ -1,0 +1,378 @@
+/* Om oss-sida */
+.about {
+    inline-size: 100%;
+    color: var(--color-text);
+    background-color: var(--color-background);
+}
+
+/* Gemensam innehållsbredd */
+.sectionContent {
+    inline-size: min(100% - 2rem, 80rem);
+    margin-inline: auto;
+}
+
+/* Liten sektionsrubrik */
+.eyebrow {
+    margin: 0;
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+/* Intro */
+.intro {
+    display: grid;
+    background-color: var(--color-surface);
+}
+
+/* Text i intro */
+.introContent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    padding-block: var(--space-2xl);
+    padding-inline: var(--space-lg);
+}
+
+/* Huvudrubrik */
+.introTitle {
+    max-inline-size: 42rem;
+    margin: 0;
+    color: var(--color-primary);
+    font-size: clamp(2rem, 8vw, 4rem);
+    line-height: 1.05;
+}
+
+/* Introtext */
+.introText {
+    max-inline-size: 42rem;
+    margin: 0;
+    color: var(--color-text);
+    line-height: 1.7;
+}
+
+/* Bildcollage */
+.introImages {
+    display: block;
+    inline-size: 100%;
+    block-size: 16rem;
+    object-fit: cover;
+}
+
+/* Fördelar */
+.benefits {
+    padding-block: var(--space-2xl);
+    background-color: var(--color-surface);
+}
+
+/* Grid för fördelar */
+.benefitGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+}
+
+/* En fördel */
+.benefit {
+    text-align: center;
+}
+
+/* Ikon */
+.benefitIcon {
+    display: grid;
+    place-items: center;
+    inline-size: 3rem;
+    block-size: 3rem;
+    margin-inline: auto;
+    margin-block-end: var(--space-sm);
+    color: var(--color-primary);
+    font-size: 2rem;
+}
+
+/* Rubrik för fördel */
+.benefit h3 {
+    margin-block: 0 var(--space-sm);
+    font-size: 1rem;
+}
+
+/* Text för fördel */
+.benefit p {
+    max-inline-size: 18rem;
+    margin: 0 auto;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+/* Modern vardag */
+.lifestyle {
+    display: grid;
+    background-color: var(--color-primary);
+}
+
+/* Bild för en modern vardag */
+.lifestyleImage {
+    display: block;
+    inline-size: 100%;
+    block-size: 20rem;
+    object-fit: cover;
+}
+
+/* Text för modern vardag */
+.lifestyleContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-md);
+    padding-block: var(--space-2xl);
+    padding-inline: var(--space-lg);
+    color: var(--color-surface);
+}
+
+.lifestyleContent .eyebrow {
+    color: var(--color-surface);
+}
+
+.lifestyleContent h2 {
+    max-inline-size: 32rem;
+    margin: 0;
+    font-size: clamp(1.75rem, 6vw, 2.75rem);
+    line-height: 1.15;
+}
+
+.lifestyleContent p {
+    max-inline-size: 34rem;
+    margin: 0;
+    line-height: 1.7;
+}
+
+/* Kategorier */
+.categories {
+    padding-block: var(--space-2xl);
+    background-color: var(--color-background);
+}
+
+/* Rubrik för kategorier */
+.sectionHeading {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-block-end: var(--space-xl);
+}
+
+.sectionHeading h2 {
+    margin: 0;
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+}
+
+.sectionHeading p:last-child {
+    max-inline-size: 44rem;
+    margin: 0;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+}
+
+/* Grid för kategorier */
+.categoryGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+}
+
+/* Kategorikort */
+.categoryItem {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-block-size: 9rem;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  color: var(--color-surface);
+  text-decoration: none;
+}
+
+/* Produktbild i kategorikortet */
+.categoryImage {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+/* Mörk toning över bilden */
+.categoryItem::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgb(0 0 0 / 65%),
+    rgb(0 0 0 / 5%) 65%
+  );
+}
+
+/* Kategorinamn */
+.categoryName {
+  position: relative;
+  z-index: 1;
+  padding: var(--space-md);
+  font-weight: 700;
+}
+
+/* Tydligt fokus vid tangentbordsnavigering */
+.categoryItem:focus-visible {
+  outline: 0.1875rem solid var(--color-accent);
+  outline-offset: 0.1875rem;
+}
+
+/* CTA */
+.cta {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-block-size: 24rem;
+  padding-block: var(--space-2xl);
+  padding-inline: var(--space-md);
+  background-position: center;
+  background-size: cover;
+}
+
+/* Mörk toning över bakgrundsbilden */
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgb(0 0 0 / 45%);
+}
+
+/* CTA-innehåll */
+.ctaContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+  inline-size: min(100%, 80rem);
+  margin-inline: auto;
+}
+
+/* CTA-rubrik */
+.ctaContent h2 {
+  margin: 0;
+  color: var(--color-surface);
+}
+
+/* CTA-text */
+.ctaContent p {
+    max-inline-size: 24rem;
+    margin: 0;
+    color: var(--color-surface);
+    line-height: 1.7;
+}
+
+/* CTA-länk */
+.ctaLink {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-block-size: 3rem;
+    padding-inline: var(--space-lg);
+    color: var(--color-surface);
+    background-color: var(--color-primary);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.ctaLink:hover {
+    background-color: var(--color-primary-hover);
+}
+
+/* Tydligt fokus vid tangentbordsnavigering */
+.ctaLink:focus-visible {
+    outline: 0.1875rem solid var(--color-accent);
+    outline-offset: 0.1875rem;
+}
+
+/* Döljer text visuellt men behåller den för skärmläsare */
+.visuallyHidden {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Tablet */
+@media (min-width: 48rem) {
+
+    .introContent,
+    .lifestyleContent {
+        padding-inline: var(--space-2xl);
+    }
+
+    .benefitGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .categoryGrid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Desktop */
+@media (min-width: 64rem) {
+    .intro {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .introContent {
+        justify-content: center;
+        min-block-size: 30rem;
+    }
+
+    /* Bildcollage */
+    .introImages {
+        block-size: 30rem;
+    }
+
+    .benefitGrid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .lifestyle {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* Bild för en modern vardag */
+    .lifestyleImage {
+        block-size: 28rem;
+    }
+
+    .categoryGrid {
+        gap: var(--space-md);
+    }
+
+    .categoryItem {
+        min-block-size: 12rem;
+    }
+
+    .cta {
+        padding-block: 4rem;
+    }
+}
+
+/* Minskar rörelse för användare som föredrar det */
+@media (prefers-reduced-motion: reduce) {
+    .ctaLink {
+        transition: none;
+    }
+}

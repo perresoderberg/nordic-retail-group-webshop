@@ -48,9 +48,14 @@ export default function Navigation() {
   }, []);
 
   useEffect(() => {
-    // Stänger kategorimenyn vid klick utanför den
+    // Stänger desktopmenyn vid klick utanför den
     function handleClickOutside(event: MouseEvent) {
+      const isDesktopNavigation = window.matchMedia(
+        "(min-width: 48rem)",
+      ).matches;
+
       if (
+        isDesktopNavigation &&
         categoryMenuRef.current &&
         !categoryMenuRef.current.contains(event.target as Node)
       ) {
@@ -62,6 +67,20 @@ export default function Navigation() {
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Stänger öppna menyer när fönstrets storlek ändras
+    function handleResize() {
+      setIsMenuOpen(false);
+      setIsCategoryMenuOpen(false);
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -102,6 +121,11 @@ export default function Navigation() {
         <div className={styles.navigationLinks}>
           <Link to="/products" className={styles.navigationLink}>
             Alla produkter
+          </Link>
+
+          {/* Länk till Om oss-sidan */}
+          <Link to="/about" className={styles.navigationLink}>
+            Om oss
           </Link>
 
           <div ref={categoryMenuRef} className={styles.categoryMenu}>
@@ -192,6 +216,15 @@ export default function Navigation() {
             onClick={closeMobileMenu}
           >
             Alla produkter
+          </Link>
+
+          {/* Länk till Om oss-sidan */}
+          <Link
+            to="/about"
+            className={styles.mobileMenuLink}
+            onClick={closeMobileMenu}
+          >
+            Om oss
           </Link>
 
           <button
