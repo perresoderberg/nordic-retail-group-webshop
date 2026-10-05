@@ -1,0 +1,29 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 100 100"
+  role="img"
+  aria-labelledby="logo-title"
+>
+  <title id="logo-title">Nordic Retail Group</title>
+
+  <!-- Vänster del av N -->
+  <path
+    d="M16 30 L28 41 L28 77 L16 87 Z"
+    fill="#1f4d3e"
+  />
+
+  <!-- Svepande mittdel av N -->
+  <path
+    d="M27 14
+       C47 22 67 43 84 79
+       C65 74 47 59 36 41
+       C31 33 28 23 27 14 Z"
+    fill="#1f4d3e"
+  />
+
+  <!-- Höger del av N -->
+  <path
+    d="M73 25 L84 15 L84 65 L73 55 Z"
+    fill="#b8afa1"
+  />
+</svg>
