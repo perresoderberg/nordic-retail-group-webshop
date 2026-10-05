@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 import styles from "./Navigation.module.css";
 
@@ -19,6 +19,8 @@ export default function Navigation() {
   const { itemCount } = useCart();
 
   const { isAdmin } = useAuth();
+
+  const [searchParams, setSearchParams] = useSearchParams();
 
   // Håller reda på om kundkorgen är öppen
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -172,11 +174,31 @@ export default function Navigation() {
             )}
           </div>
         </div>
-        <form method="get" className={styles.searchForm} action="/products">
+        <form
+          className={styles.searchForm}
+          onSubmit={(event) => {
+            event.preventDefault();
+
+            const formData = new FormData(event.currentTarget);
+            const search = formData.get("search")?.toString().trim() ?? "";
+
+            const params = new URLSearchParams(searchParams);
+
+            if (search) {
+              params.set("search", search);
+            } else {
+              params.delete("search");
+            }
+
+            params.set("page", "1");
+
+            setSearchParams(params);
+          }}
+        >
           <input
             type="search"
             name="search"
-            placeholder="Vad söker du just nu?"
+            placeholder="Sök produkter"
             aria-label="Sök"
           />
 
