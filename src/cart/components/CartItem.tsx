@@ -1,5 +1,6 @@
 import type { CartItem as CartItemType } from "../types";
 import styles from "./CartItem.module.css";
+import trash from "../../assets/icons/trash.svg";
 
 interface CartItemProps {
   item: CartItemType;
@@ -53,7 +54,7 @@ export default function CartItem({
         className={styles.removeButton}
         aria-label={`Remove ${item.title} from cart`}
       >
-        ×
+        <img src={trash} alt="Ta bort produkt" />
       </button>
 
       <p className={styles.itemTotal}>
