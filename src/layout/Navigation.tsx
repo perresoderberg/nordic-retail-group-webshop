@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import styles from "./Navigation.module.css";
 
-import logo from "../assets/icons/logo_white.svg";
+import logo from "../assets/logo-n-white.svg";
 import person from "../assets/icons/person_white.svg";
 import basket from "../assets/icons/basket_white.svg";
 
@@ -110,11 +110,23 @@ export default function Navigation() {
           aria-label="Startsida"
           onClick={closeMobileMenu}
         >
+          {/* N-symbol */}
           <img
             className={styles.navigationLogo}
             src={logo}
-            alt="Nordic Retail Group"
+            alt=""
+            aria-hidden="true"
           />
+
+          {/* Företagsnamn */}
+          {/* Företagsnamn */}
+          <span className={styles.logoText}>
+            <span className={styles.logoName}>Nordic</span>
+            <span className={styles.logoSubName}>Retail Group</span>
+          </span>
+          {/* <span className={styles.logoText}>
+  Nordic Retail Group
+</span> */}
         </Link>
 
         {/* Navigation för desktop */}

@@ -12,18 +12,67 @@
 }
 
 /* Länk runt logotypen */
+/* Länk runt logotypen */
 .logoLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.1rem;
+  color: var(--color-surface);
+  text-decoration: none;
+}
+
+/* .logoLink {
   display: flex;
   align-items: center;
   flex-shrink: 0;
-}
+  gap: var(--space-sm);
+  color: var(--color-surface);
+  text-decoration: none;
+} */
 
-/* Logotyp */
+/* N-symbol */
 .navigationLogo {
   display: block;
   inline-size: auto;
   block-size: 2.5rem;
 }
+
+/* Företagsnamn */
+/* Företagsnamn */
+.logoText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--color-surface);
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Nordic */
+.logoName {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+/* Retail Group */
+.logoSubName {
+  margin-block-start: 0.15rem;
+  font-size: 0.45rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+}
+
+/* .logoText {
+  color: var(--color-surface);
+  font-size: .7rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+} */
 
 /* Desktopnavigation är dold på mobil */
 .navigationLinks {
