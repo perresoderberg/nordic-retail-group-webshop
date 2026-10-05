@@ -13,6 +13,8 @@ import { getCategories } from "../categories/category-api";
 import type { Category } from "../types/types";
 import { useAuth } from "../auth/useAuth";
 
+import search from "../assets/icons/search_black.svg";
+
 export default function Navigation() {
   const { itemCount } = useCart();
 
@@ -50,9 +52,8 @@ export default function Navigation() {
   useEffect(() => {
     // Stänger desktopmenyn vid klick utanför den
     function handleClickOutside(event: MouseEvent) {
-      const isDesktopNavigation = window.matchMedia(
-        "(min-width: 48rem)",
-      ).matches;
+      const isDesktopNavigation =
+        window.matchMedia("(min-width: 48rem)").matches;
 
       if (
         isDesktopNavigation &&
@@ -171,7 +172,22 @@ export default function Navigation() {
             )}
           </div>
         </div>
+        <form method="get" className={styles.searchForm} action="/products">
+          <input
+            type="search"
+            name="search"
+            placeholder="Vad söker du just nu?"
+            aria-label="Sök"
+          />
 
+          <button
+            type="submit"
+            className={styles.searchButton}
+            aria-label="Sök"
+          >
+            <img src={search} alt="" />
+          </button>
+        </form>
         {/* Konto, kundkorg och mobilmeny */}
         <div className={styles.navigationActions}>
           {isAdmin && (

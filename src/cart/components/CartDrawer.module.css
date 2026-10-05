@@ -307,7 +307,7 @@
   border-radius: 0.5rem;
 
   background: var(--color-header);
-  color: var(--color-hard-border);
+  color: white;
 
   font-size: 1.5rem;
   font-weight: bold;

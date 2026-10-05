@@ -13,6 +13,7 @@ export function Products() {
 
   // Hämtar kategori-id från URL:en
   const categoryId = searchParams.get("categoryId");
+  const search = searchParams.get("search");
 
   // Sparar produkterna som hämtas från API:t
   const [products, setProducts] = useState<ProductsResponse>();
@@ -29,6 +30,7 @@ export function Products() {
         // Hämtar produkter med vald kategori från URL:en
         const data = await getProducts(page, pageSize, {
           categoryId: categoryId ? Number(categoryId) : undefined,
+          search: search ? search : "",
         });
 
         // Sparar produkterna i state
@@ -43,7 +45,7 @@ export function Products() {
     }
 
     loadProducts();
-  }, [page, pageSize, categoryId]);
+  }, [page, pageSize, categoryId, search]);
 
   return (
     <div id="main-content" className={styles.productsPage}>
