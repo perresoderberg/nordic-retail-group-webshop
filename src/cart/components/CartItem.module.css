@@ -97,6 +97,10 @@
   line-height: 1;
 
   cursor: pointer;
+
+  img {
+    width: 2rem;
+  }
 }
 
 .itemTotal {
