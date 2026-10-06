@@ -24,7 +24,7 @@ export default function Pagination({
 }: Props) {
   const [searchParams] = useSearchParams();
 
-  if (!totalPages) return null;
+  if (totalPages <= 1) return null;
 
   const items: PaginationItem[] = [];
 
@@ -129,9 +129,7 @@ export default function Pagination({
                 ? `${styles.button} ${styles.selected}`
                 : styles.button
             }
-            aria-current={
-              item.page === currentPage ? "page" : undefined
-            }
+            aria-current={item.page === currentPage ? "page" : undefined}
           >
             {item.page}
           </Link>

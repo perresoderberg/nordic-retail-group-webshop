@@ -25,12 +25,14 @@ export function Products() {
   useEffect(() => {
     // Hämtar produkterna när sidan laddas
     async function loadProducts() {
+      setIsLoading(true);
+      setError("");
+
       try {
-        // Hämtar produkter med vald kategori från URL:en
         // Hämtar produkter med vald kategori från URL:en
         const data = await getProducts(page, pageSize, {
           categoryId: categoryId ? Number(categoryId) : undefined,
-          search: search ? search : "",
+          search: search || undefined,
         });
 
         // Sparar produkterna i state
@@ -49,18 +51,25 @@ export function Products() {
 
   return (
     <div id="main-content" className={styles.productsPage}>
-      <h1>Products</h1>
+      {search ? <h1>Sökresultat för "{search}"</h1> : <h1>Products</h1>}
+
       {isLoading && <p role="status">Produkter laddas...</p>}
       {error && <p role="alert">{error}</p>}
       {/* Visar produkterna när laddningen är klar och inget fel finns */}
-      {!isLoading && !error && products && (
-        <ProductGrid
-          products={products.items}
-          currentPage={products.page}
-          pageSize={pageSize}
-          totalPages={products.totalPages}
-        />
-      )}
+
+      {!isLoading &&
+        !error &&
+        products &&
+        (products.items.length === 0 ? (
+          <p className={styles.noProducts}>Inga produkter hittade</p>
+        ) : (
+          <ProductGrid
+            products={products.items}
+            currentPage={products.page}
+            pageSize={pageSize}
+            totalPages={products.totalPages}
+          />
+        ))}
     </div>
   );
 }
