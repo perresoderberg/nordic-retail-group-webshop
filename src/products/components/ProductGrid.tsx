@@ -36,11 +36,13 @@ export default function ProductGrid({
           onChange={handlePageSizeChange}
         />
 
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          pageSize={pageSize}
-        />
+        {products && totalPages > 1 && products.length > 30 && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            pageSize={pageSize}
+          />
+        )}
       </div>
 
       <div className={styles.productGrid}>
@@ -48,12 +50,13 @@ export default function ProductGrid({
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
-
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        pageSize={pageSize}
-      />
+      {products && totalPages > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          pageSize={pageSize}
+        />
+      )}
     </div>
   );
 }

@@ -3,9 +3,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-sm);
-
-  margin-block-end: var(--space-md);
+  gap: 0;
+  margin-block-end: 0;
 }
 
 /* Grid för produktkorten */
