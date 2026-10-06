@@ -5,4 +5,26 @@
 
   padding-block: var(--space-xl);
   padding-inline: var(--space-lg);
+
+  display: flex;
+  flex-direction: column;
+}
+.noProducts {
+  padding-block: 4rem;
+
+  text-align: center;
+
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .productsPage {
+    align-items: center;
+    padding: 0.5rem;
+  }
+  h1 {
+    padding: 0;
+    margin: 0;
+  }
 }
