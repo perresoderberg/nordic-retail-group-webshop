@@ -61,7 +61,7 @@ export function Products() {
         !error &&
         products &&
         (products.items.length === 0 ? (
-          <p className={styles.noProducts}>Inga produkter hittade</p>
+          <p className={styles.noProducts}>Inga produkter hittades</p>
         ) : (
           <ProductGrid
             products={products.items}

@@ -331,6 +331,10 @@
       outline: 2px solid var(--color-text-muted);
     }
   }
+  input[type="search"]::-webkit-search-cancel-button {
+    appearance: none;
+    display: none;
+  }
 }
 
 .searchButton {
