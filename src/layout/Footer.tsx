@@ -17,7 +17,7 @@ export default function Footer() {
 
           {/* Sociala medier */}
           <div className={styles.socialLinks}>
-            <span className={styles.socialIcon} aria-label="Instagram">
+            <span className={styles.socialIcon}>
               <svg
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -35,7 +35,7 @@ export default function Footer() {
               </svg>
             </span>
 
-            <span className={styles.socialIcon} aria-label="Facebook">
+            <span className={styles.socialIcon}>
               <svg
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -45,7 +45,7 @@ export default function Footer() {
               </svg>
             </span>
 
-            <span className={styles.socialIcon} aria-label="YouTube">
+            <span className={styles.socialIcon}>
               <svg
                 viewBox="0 0 24 24"
                 aria-hidden="true"
