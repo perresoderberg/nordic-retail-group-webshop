@@ -9,6 +9,7 @@ import { Products } from "./routes/products";
 import Product from "./routes/product";
 import Admin from "./routes/admin";
 import About from "./routes/about";
+import NotFoundPage from "./not-found/NotFoundPage";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
       {
         path: "/admin",
         element: <Admin />,
+      },
+      {
+        path: "*",
+        element: <NotFoundPage />,
       },
     ],
   },

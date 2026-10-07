@@ -1,0 +1,144 @@
+/* 404-sidans huvudsektion */
+.notFound {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: calc(100vh - 8rem);
+  padding-block: var(--space-2xl);
+  padding-inline: var(--space-md);
+  overflow: hidden;
+  background-color: var(--color-background);
+}
+
+/* Håller ihop felkod och innehåll */
+.content {
+  position: relative;
+  inline-size: 100%;
+  max-inline-size: 60rem;
+  text-align: center;
+}
+
+/* Stor dekorativ 404 */
+.errorCode {
+  margin: 0;
+  color: var(--color-secondary);
+  font-size: clamp(8rem, 30vw, 20rem);
+  font-weight: 700;
+  line-height: 0.8;
+  letter-spacing: -0.08em;
+  user-select: none;
+}
+
+/* Innehållet framför felkoden */
+.message {
+  position: relative;
+  z-index: 1;
+  max-inline-size: 34rem;
+  margin-inline: auto;
+  margin-block-start: -3rem;
+}
+
+/* Dekorativ shoppingillustration */
+.shoppingImage {
+  display: block;
+  inline-size: min(45%, 18rem);
+  block-size: auto;
+  margin-inline: auto;
+  margin-block-end: var(--space-md);
+  object-fit: contain;
+}
+
+.message h1 {
+  margin-block: 0 var(--space-md);
+  color: var(--color-primary);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+}
+
+.message p {
+  margin-block: 0 var(--space-sm);
+  color: var(--color-text);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Länkar tillbaka till webbshoppen */
+.actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-block-start: var(--space-xl);
+}
+
+/* Gemensam stil för länkarna */
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 2.75rem;
+  padding-block: var(--space-sm);
+  padding-inline: var(--space-lg);
+  border: 0.125rem solid var(--color-primary);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+/* Primär länk */
+.primaryButton {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+}
+
+.primaryButton:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+
+/* Sekundär länk */
+.secondaryButton {
+  background-color: transparent;
+  color: var(--color-primary);
+}
+
+.secondaryButton:hover {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+}
+
+/* Tydligt fokus för tangentbordsnavigation */
+.primaryButton:focus-visible,
+.secondaryButton:focus-visible {
+  outline: 0.1875rem solid var(--color-accent);
+  outline-offset: 0.1875rem;
+}
+
+/* Tablet och större skärmar */
+@media (min-width: 48rem) {
+  .message {
+    margin-block-start: -5rem;
+  }
+
+  .shoppingImage {
+    inline-size: min(55%, 20rem);
+  }
+
+  .actions {
+    flex-direction: row;
+  }
+}
+
+/* Desktop */
+@media (min-width: 64rem) {
+  .message {
+    margin-block-start: -7rem;
+  }
+
+  .shoppingImage {
+    inline-size: min(65%, 24rem);
+  }
+}
