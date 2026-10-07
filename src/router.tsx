@@ -39,14 +39,14 @@ export const router = createBrowserRouter([
         path: "/admin",
         element: <Admin />,
       },
-      {
-        path: "*",
-        element: <NotFoundPage />,
-      },
     ],
   },
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />,
   },
 ]);
