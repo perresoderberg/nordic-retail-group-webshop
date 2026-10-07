@@ -1,12 +1,14 @@
 import { useState } from "react";
 import styles from "./LoginForm.module.css";
 import { signIn } from "../services/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   // Hanterar inloggningen när formuläret skickas
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -17,6 +19,7 @@ export default function LoginForm() {
 
     try {
       await signIn(email, password);
+      navigate("/");
     } catch {
       setErrorMessage("Fel e-postadress eller lösenord.");
     } finally {
