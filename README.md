@@ -4,6 +4,72 @@ Frontend for the **Nordic Retail Group** webshop project.
 
 The application is built with **React, TypeScript and Vite**. It communicates with an ASP.NET Core backend API and uses **Supabase** for authentication. The frontend also contains a client-side shopping cart persisted in `localStorage`.
 
+
+**Live Demo:** https://nordic-retail-group-webshop.onrender.com/
+
+**GitHub Repository:** https://github.com/perresoderberg/nordic-retail-group-webshop
+
+## Problem
+
+Online shoppers need a simple and reliable way to find products, compare information and manage their shopping cart. Large product catalogs can make it difficult to navigate between categories, find relevant products and keep track of selected items.
+
+The challenge was to create a user-friendly webshop with clear navigation, responsive design and an efficient shopping experience across different devices.
+
+## Purpose and Goals
+
+The goal of Nordic Retail Group is to create a responsive webshop where customers can easily browse products, search and filter by category, view product details and manage their shopping cart.
+
+The project focuses on:
+
+- Creating a clear and intuitive user experience.
+- Supporting both desktop and mobile users.
+- Providing product search, category filtering and pagination.
+- Keeping shopping cart data between visits using `localStorage`.
+- Integrating the frontend with a backend API.
+- Building a maintainable application using React and TypeScript.
+
+## Target Audience
+
+The webshop is designed for customers who want a simple, accessible and efficient online shopping experience.
+
+The project is based on two primary personas defined in the PRD.
+
+### Maya – Mobile Shopper (24)
+
+Maya frequently shops using her smartphone and values fast loading times, clear product images and easy navigation.
+
+She needs a responsive interface with accessible buttons, simple search functionality and a smooth experience when browsing products.
+
+### Peter – Price- and Quality-Conscious Shopper (42)
+
+Peter usually shops using a desktop or laptop computer. He likes to compare product information and find specific items.
+
+He needs reliable category filtering, pagination, clear price and stock information, and shareable URLs that preserve search and filter selections.
+
+## Screenshots
+
+The screenshots below show the main features and responsive design of the Nordic Retail Group webshop.
+
+### Home Page
+
+![Nordic Retail Group home page](src/assets/images/screenshots/home.webp)
+
+### Product Listing
+
+![Product listing with categories and pagination](src/assets/images/screenshots/products.webp)
+
+### Product Details
+
+![Product details with pricing and product information](src/assets/images/screenshots/product-detail.webp)
+
+### Shopping Cart
+
+![Shopping cart with selected products](src/assets/images/screenshots/cart.webp)
+
+### Mobile View
+
+![Responsive mobile view of the webshop](src/assets/images/screenshots/mobile.webp)
+
 ## Overview
 
 The application provides:
