@@ -57,7 +57,7 @@ export default function Navigation() {
     // Stänger desktopmenyn vid klick utanför den
     function handleClickOutside(event: MouseEvent) {
       const isDesktopNavigation =
-        window.matchMedia("(min-width: 48rem)").matches;
+        window.matchMedia("(min-width: 780px)").matches;
 
       if (
         isDesktopNavigation &&
