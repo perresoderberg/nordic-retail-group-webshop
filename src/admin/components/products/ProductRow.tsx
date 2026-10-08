@@ -11,8 +11,9 @@ type Props = {
 export default function ProductRow({ product }: Props) {
   if (product.stock == null) return null;
 
-  let stockColor = "";
-  let stockText = "";
+  // Bestämmer text och färg utifrån produktens lagersaldo
+  let stockColor: string;
+  let stockText: string;
 
   if (product.stock === 0) {
     stockText = "Out Of Stock";

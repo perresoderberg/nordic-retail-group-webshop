@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useSearchParams, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import styles from "./Navigation.module.css";
 
@@ -12,17 +12,16 @@ import { useCart } from "../cart/useCart";
 import { getCategories } from "../categories/category-api";
 import type { Category } from "../types/types";
 import { useAuth } from "../auth/useAuth";
+import NavigationSearch from "./NavigationSearch";
 
-import search from "../assets/icons/search_black.svg";
 
 export default function Navigation() {
   const { itemCount } = useCart();
 
   const { isAdmin } = useAuth();
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  // Hämtar aktuell adress för att återställa sökfältet vid navigering
   const location = useLocation();
-  const [searchText, setSearchText] = useState("");
 
   // Håller reda på om kundkorgen är öppen
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -105,18 +104,6 @@ export default function Navigation() {
     setIsCategoryMenuOpen(false);
   }
 
-  useEffect(() => {
-    setSearchText("");
-  }, [location.pathname, location.search]);
-
-  function clearSearch() {
-    setSearchText("");
-    const params = new URLSearchParams(searchParams);
-
-    params.delete("search");
-    params.set("page", "1");
-  }
-
   return (
     <>
       <nav className={styles.topbarContainer} aria-label="Huvudnavigation">
@@ -136,14 +123,11 @@ export default function Navigation() {
           />
 
           {/* Företagsnamn */}
-          {/* Företagsnamn */}
           <span className={styles.logoText}>
             <span className={styles.logoName}>Nordic</span>
             <span className={styles.logoSubName}>Retail Group</span>
           </span>
-          {/* <span className={styles.logoText}>
-  Nordic Retail Group
-</span> */}
+
         </Link>
         {/* Navigation för desktop */}
         <div className={styles.navigationLinks}>
@@ -187,58 +171,10 @@ export default function Navigation() {
             )}
           </div>
         </div>
-        <div className={styles.searchArea}>
-          <form
-            className={styles.searchForm}
-            onSubmit={(event) => {
-              event.preventDefault();
 
-              const formData = new FormData(event.currentTarget);
-              const search = formData.get("search")?.toString().trim() ?? "";
+        {/* Återställer sökfältet när adressen ändras */}
+        <NavigationSearch key={`${location.pathname}${location.search}`} />
 
-              const params = new URLSearchParams(searchParams);
-
-              if (search) {
-                params.set("search", search);
-              } else {
-                params.delete("search");
-              }
-
-              params.set("page", "1");
-
-              setSearchParams(params);
-
-              setSearchText("");
-            }}
-          >
-            <input
-              type="search"
-              name="search"
-              value={searchText}
-              onChange={(event) => {
-                setSearchText(event.target.value);
-              }}
-              placeholder="Sök produkter"
-              aria-label="Sök"
-            />
-
-            <button
-              type="submit"
-              className={styles.searchButton}
-              aria-label="Sök"
-            >
-              <img src={search} alt="" />
-            </button>
-          </form>
-          <button
-            type="button"
-            className={styles.clearSearchButton}
-            onClick={clearSearch}
-            aria-label="Rensa sökning"
-          >
-            ×
-          </button>
-        </div>
         {/* Konto, kundkorg och mobilmeny */}
         <div className={styles.navigationActions}>
           {isAdmin && (
