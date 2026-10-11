@@ -251,7 +251,7 @@ _Vad krävs i er grupp för att en Issue/Ticket ska få flyttas till "Done"? (Kr
 - [x] Lösningen uppfyller den specificerade User Storyn och dess acceptanskriterier.
 - [x] Funktionen är testad lokalt och fungerar som förväntat.
 - [x] Applikationen bygger utan fel (`npm run build`).
-- [ ] Det finns inga TypeScript- eller lint-fel.
+- [x] Det finns inga TypeScript- eller lint-fel.
 - [x] Koden är tydlig, strukturerad och följer projektets befintliga kodstruktur.
 - [x] Funktionen fungerar responsivt där det är relevant.
 - [x] Grundläggande tillgänglighet är kontrollerad där det är relevant.
