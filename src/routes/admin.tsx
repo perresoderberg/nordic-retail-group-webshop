@@ -38,9 +38,6 @@ export default function Admin() {
           ascending: order === "asc",
         });
 
-        console.log("response", response);
-        console.log("response.items", response.items);
-
         setProducts(response.items);
       } catch (error) {
         console.error("Failed to load products:", error);

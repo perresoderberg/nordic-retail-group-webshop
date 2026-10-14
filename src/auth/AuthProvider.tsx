@@ -17,19 +17,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setIsAdmin(false);
         return;
       }
-      //   console.log("Authenticated user ID:", user.id);
-      //   console.log("Authenticated user email:", user.email);
 
       const { data, error } = await supabase
         .from("user_roles")
         .select("role")
         .eq("user_id", user.id)
         .single();
-
-      //   console.log("user_roles query:");
-      //   console.log("  user.id:", user.id);
-      //   console.log("  data:", data);
-      //   console.log("  error:", error);
 
       if (error) {
         console.error("Failed to load user role:", error);
@@ -62,10 +55,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       subscription.unsubscribe();
     };
   }, []);
-
-  console.log("Auth user:", user);
-  console.log("App metadata:", user?.app_metadata);
-  console.log("Is admin:", isAdmin);
 
   return (
     <AuthContext.Provider
