@@ -14,7 +14,6 @@ import type { Category } from "../types/types";
 import { useAuth } from "../auth/useAuth";
 import NavigationSearch from "./NavigationSearch";
 
-
 export default function Navigation() {
   const { itemCount } = useCart();
 
@@ -127,7 +126,6 @@ export default function Navigation() {
             <span className={styles.logoName}>Nordic</span>
             <span className={styles.logoSubName}>Retail Group</span>
           </span>
-
         </Link>
         {/* Navigation för desktop */}
         <div className={styles.navigationLinks}>

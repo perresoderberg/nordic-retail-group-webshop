@@ -6,9 +6,7 @@ interface CategorySectionProps {
   categories: Category[];
 }
 
-export default function CategorySection({
-  categories,
-}: CategorySectionProps) {
+export default function CategorySection({ categories }: CategorySectionProps) {
   return (
     <section
       className={styles.categorySection}
